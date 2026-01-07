@@ -25,11 +25,13 @@ This comprehensive guide provides step-by-step instructions for using HED Python
 ### Installation
 
 Install HEDTools from PyPI:
+
 ```bash
 pip install hedtools
 ```
 
 For the latest development version from GitHub:
+
 ```bash
 pip install git+https://github.com/hed-standard/hed-python/@main
 ```

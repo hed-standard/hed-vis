@@ -41,7 +41,7 @@ dependencies = [
     "et-xmlfile",
     "inflect",
     "jsonschema",
-    "hedtools",
+    "hedtools>=0.8.1",
     "matplotlib>=3.9.0",
     "numpy",
     "openpyxl",
@@ -51,7 +51,7 @@ dependencies = [
     "pytz",
     "semantic-version",
     "six",
-    "wordcloud==1.9.4"
+    "wordcloud>=1.9.4"
 ]
 
 [project.urls]
@@ -170,7 +170,7 @@ exclude = '''
   | dist
   | \.eggs
   | .*\.egg-info
-  | \.status
+  | .status
   | status
 )/
 '''

@@ -2,8 +2,7 @@
 
 ## Why HED?
 
-!!! info "Why use HED?"
-    HED (Hierarchical Event Descriptors) is an infrastructure and a controlled vocabulary that allows researchers to annotate their experimental data, especially events, so that tools can automatically use this information in analysis.
+!!! info "Why use HED?" HED (Hierarchical Event Descriptors) is an infrastructure and a controlled vocabulary that allows researchers to annotate their experimental data, especially events, so that tools can automatically use this information in analysis.
 
 For more information on using Hierarchical Event Descriptors (HED) visit [HED project homepage](https://www.hedtags.org).
 
