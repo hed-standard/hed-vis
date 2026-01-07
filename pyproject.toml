@@ -41,7 +41,7 @@ dependencies = [
     "et-xmlfile",
     "inflect",
     "jsonschema",
-    "hedtools",
+    "hedtools>=0.8.1",
     "matplotlib>=3.9.0",
     "numpy",
     "openpyxl",
@@ -170,7 +170,7 @@ exclude = '''
   | dist
   | \.eggs
   | .*\.egg-info
-  | \.status
+  | .status
   | status
 )/
 '''

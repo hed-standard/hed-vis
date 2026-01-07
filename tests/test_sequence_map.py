@@ -1,6 +1,6 @@
 import unittest
 import os
-from hed.tools.analysis.sequence_map import SequenceMap
+from hedvis.core.sequence_map import SequenceMap
 
 
 class Test(unittest.TestCase):
