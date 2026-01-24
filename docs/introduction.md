@@ -18,18 +18,21 @@ HED-annotated datasets contain rich semantic information about events and experi
 ## Key features
 
 ### Word cloud generation
+
 - Create customizable word clouds from HED tag frequencies
 - Support for shaped clouds using mask images
 - Flexible color schemes and layouts
 - Export to PNG and SVG formats
 
 ### Integration with hedtools
+
 - Works seamlessly with hedtools data structures
 - Process data from BIDS datasets, spreadsheets, or dataframes
 - Automatic tag frequency counting
 - Support for tag templates and filtering
 
 ### Two APIs for flexibility
+
 - **New API** - Modern, configuration-based interface using `HedTagVisualizer`
 - **Legacy API** - Simple functional interface for quick word cloud generation
 
@@ -83,6 +86,7 @@ results['word_cloud']['wordcloud_object'].to_file('output.png')
 ### Issues and problems
 
 If you encounter bugs or have feature requests:
+
 - **hedvis issues**: [open an issue](https://github.com/hed-standard/hed-vis/issues) in the hed-vis repository
 - **hedtools issues**: [open an issue](https://github.com/hed-standard/hed-python/issues) in the hed-python repository
 

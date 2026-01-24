@@ -435,6 +435,7 @@ results = visualizer.visualize_from_counts(tag_counts)
 **Problem**: Word cloud generates but shows no words.
 
 **Solutions**:
+
 - Check that word_freq dictionary is not empty
 - Verify frequencies are positive numbers
 - Ensure dimensions are large enough (minimum 100x100)
@@ -445,6 +446,7 @@ results = visualizer.visualize_from_counts(tag_counts)
 **Problem**: Custom font path raises an error.
 
 **Solutions**:
+
 - Verify font file exists at specified path
 - Ensure font is .ttf, .otf, or .ttc format
 - Try with `font_path=None` (uses default)
@@ -455,6 +457,7 @@ results = visualizer.visualize_from_counts(tag_counts)
 **Problem**: Mask image specified but word cloud is rectangular.
 
 **Solutions**:
+
 - Verify mask path is correct
 - Check mask is high-contrast (black/white)
 - Ensure mask is PNG or JPEG format
@@ -465,6 +468,7 @@ results = visualizer.visualize_from_counts(tag_counts)
 **Problem**: Cannot import hedvis modules.
 
 **Solutions**:
+
 - Ensure installation: `pip install hedvis`
 - For development: install in editable mode `pip install -e .`
 - Activate virtual environment if using one
@@ -475,6 +479,7 @@ results = visualizer.visualize_from_counts(tag_counts)
 **Problem**: Word cloud colors don't match expectations.
 
 **Solutions**:
+
 - Check colormap name spelling
 - Try standard colormaps: 'viridis', 'plasma', 'rainbow'
 - Adjust `color_range` parameter
@@ -485,6 +490,7 @@ results = visualizer.visualize_from_counts(tag_counts)
 **Problem**: Word cloud generation is slow.
 
 **Solutions**:
+
 - Reduce image dimensions
 - Simplify mask if using one
 - Reduce number of words (filter low-frequency tags)
