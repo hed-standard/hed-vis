@@ -1,252 +1,555 @@
-# HED Python Tools - User Guide
+# HED visualization user guide
 
-This comprehensive guide provides step-by-step instructions for using HED Python tools in various scenarios, from basic validation to advanced analysis workflows.
+This comprehensive guide shows how to use hedvis to create visualizations from HED-annotated data.
 
-## Quick Links
+## Quick links
 
-- 📚 [API Reference](api/index.md)
-- 🐛 [GitHub Issues](https://github.com/hed-standard/hed-python/issues)
-- 📖 [HED Specification](https://hed-specification.readthedocs.io/)
-- 🌐 [Online Tools](https://hedtools.org)
+- [API reference](api/index.md)
+- [GitHub issues](https://github.com/hed-standard/hed-vis/issues)
+- [HED specification](https://hed-specification.readthedocs.io/)
+- [HED online tools](https://hedtools.org)
+- [hedtools documentation](https://hed-python.readthedocs.io/)
 
-## Table of Contents
+## Table of contents
 
-1. [Getting Started](#getting-started)
-2. [Working with HED Schemas](#working-with-hed-schemas)
-3. [Validating HED Strings](#validating-hed-strings)
-4. [Working with BIDS Datasets](#working-with-bids-datasets)
-5. [Spreadsheet Integration](#spreadsheet-integration)
-6. [Advanced Usage](#advanced-usage)
-7. [Best Practices](#best-practices)
+1. [Getting started](#getting-started)
+2. [Basic word clouds](#basic-word-clouds)
+3. [Configuration-based API](#configuration-based-api)
+4. [Working with HED data](#working-with-hed-data)
+5. [Advanced customization](#advanced-customization)
+6. [Output formats](#output-formats)
+7. [Best practices](#best-practices)
 8. [Troubleshooting](#troubleshooting)
 
-## Getting Started
+## Getting started
 
 ### Installation
 
-Install HEDTools from PyPI:
+Install hedvis from PyPI:
 
 ```bash
-pip install hedtools
+pip install hedvis
 ```
 
-For the latest development version from GitHub:
+This automatically installs hedtools and other dependencies.
 
-```bash
-pip install git+https://github.com/hed-standard/hed-python/@main
-```
-
-### Basic Example
-
-Here's a simple example to get you started with HED validation:
+### Basic imports
 
 ```python
-from hed import HedString, load_schema
+# New API (recommended)
+from hedvis import HedTagVisualizer, VisualizationConfig, WordCloudConfig
 
-# Load the latest HED schema
-schema = load_schema()
-
-# Create a HED string
-hed_string = HedString("Sensory-event, Visual-presentation, (Onset, (Red, Square))")
-
-# Validate the string
-issues = hed_string.validate(schema)
-if issues:
-    print("Validation issues found:")
-    for issue in issues:
-        print(f"  - {issue}")
-else:
-    print("✓ HED string is valid!")
+# Legacy API (simple word clouds)
+from hedvis import create_wordcloud, word_cloud_to_svg
 ```
 
-## Working with HED Schemas
+## Basic word clouds
 
-### Loading Schemas
+### Simple word cloud from dictionary
+
+The easiest way to create a word cloud is from a dictionary of word frequencies:
+
+```python
+from hedvis import create_wordcloud
+
+# Define word frequencies
+word_freq = {
+    "Event": 15,
+    "Action": 10,
+    "Sensory-event": 8,
+    "Visual-presentation": 7,
+    "Agent-action": 5
+}
+
+# Create word cloud
+wc = create_wordcloud(word_freq, width=800, height=600)
+
+# Save as image
+wc.to_file("my_wordcloud.png")
+```
+
+### Converting to SVG
+
+SVG format is useful for publications and web display:
+
+```python
+from hedvis import create_wordcloud, word_cloud_to_svg
+
+wc = create_wordcloud(word_freq)
+svg_string = word_cloud_to_svg(wc)
+
+# Save SVG to file
+with open("wordcloud.svg", "w") as f:
+    f.write(svg_string)
+```
+
+### Using a mask image
+
+Create shaped word clouds using a mask image:
+
+```python
+# Use a PNG image as mask (white areas = text, black = empty)
+wc = create_wordcloud(
+    word_freq,
+    mask_path="brain_mask.png",
+    background_color="white"
+)
+wc.to_file("shaped_wordcloud.png")
+```
+
+### Customizing appearance
+
+```python
+wc = create_wordcloud(
+    word_freq,
+    width=1200,
+    height=800,
+    background_color="white",
+    prefer_horizontal=0.9,  # 90% horizontal text
+    min_font_size=10,
+    max_font_size=100,
+    colormap="viridis"
+)
+```
+
+## Configuration-based API
+
+The new API provides a more structured approach using configuration objects.
+
+### Using configuration dictionaries
+
+```python
+from hedvis import HedTagVisualizer
+
+# Define configuration as dictionary
+config = {
+    "word_cloud": {
+        "width": 1000,
+        "height": 700,
+        "background_color": "white",
+        "colormap": "plasma"
+    },
+    "output_formats": ["png", "svg"],
+    "save_directory": "./visualizations"
+}
+
+# Create visualizer
+visualizer = HedTagVisualizer(config)
+```
+
+### Using configuration classes
+
+For better type safety and IDE support:
+
+```python
+from hedvis import HedTagVisualizer, VisualizationConfig, WordCloudConfig
+
+# Configure word cloud
+wc_config = WordCloudConfig(
+    width=1200,
+    height=800,
+    background_color="white",
+    colormap="viridis",
+    prefer_horizontal=0.8,
+    min_font_size=12,
+    max_font_size=120
+)
+
+# Configure visualizer
+viz_config = VisualizationConfig(
+    word_cloud=wc_config,
+    output_formats=["png", "svg"],
+    save_directory="./output",
+    save_files=True
+)
+
+# Create visualizer
+visualizer = HedTagVisualizer(viz_config)
+```
+
+### Masked word clouds with configuration
+
+```python
+wc_config = WordCloudConfig(
+    width=1000,
+    height=1000,
+    use_mask=True,
+    mask_path="brain_outline.png",
+    background_color="white",
+    contour_width=3,
+    contour_color="navy"
+)
+
+viz_config = VisualizationConfig(word_cloud=wc_config)
+visualizer = HedTagVisualizer(viz_config)
+```
+
+## Working with HED data
+
+### From pre-computed tag counts
+
+If you've already computed tag frequencies using hedtools:
+
+```python
+from hed.tools.analysis.hed_tag_counts import HedTagCounts
+from hedvis import HedTagVisualizer
+
+# Assume you have tag_counts from hedtools analysis
+# tag_counts = HedTagCounts(...)
+
+visualizer = HedTagVisualizer()
+results = visualizer.visualize_from_counts(tag_counts)
+
+# Access the word cloud
+wc = results['word_cloud']['wordcloud_object']
+wc.to_file("hed_tags.png")
+```
+
+### From tabular data
+
+Visualize directly from BIDS-style tabular data:
 
 ```python
 from hed import load_schema
+from hed.models import TabularInput
+from hedvis import HedTagVisualizer
 
-# Load the latest official schema
+# Load HED schema
 schema = load_schema()
 
-# Load a specific version
-schema = load_schema(version="8.2.0")
+# Load your data
+events_file = "sub-01_events.tsv"
+sidecar_file = "task-experiment_events.json"
+tabular = TabularInput(events_file, sidecar=sidecar_file)
 
-# Load from a local file
-schema = load_schema("path/to/schema.xml")
+# Create visualizer
+visualizer = HedTagVisualizer()
 
-# Load from URL
-schema = load_schema("https://example.com/schema.xml")
+# Generate visualizations
+results = visualizer.visualize_from_tabular(
+    tabular,
+    schema,
+    output_basename="experiment_tags",
+    include_context=True,
+    replace_defs=True
+)
+
+# Save outputs
+wc = results['word_cloud']['wordcloud_object']
+wc.to_file("experiment_wordcloud.png")
 ```
 
-### Schema Information
+### From pandas DataFrame
+
+Work directly with pandas DataFrames:
 
 ```python
-# Get schema version
-print(f"Schema version: {schema.version}")
+import pandas as pd
+from hed import load_schema
+from hedvis import HedTagVisualizer
 
-# Get all tags
-all_tags = schema.get_all_tags()
+# Load your data
+df = pd.read_csv("events.tsv", sep="\t")
 
-# Check if a tag exists
-exists = schema.check_compliance("Sensory-event")
+# Load schema
+schema = load_schema()
 
-# Get tag attributes
-attributes = schema.get_tag_attributes("Sensory-event")
+# Create visualizer with config
+config = {
+    "word_cloud": {"width": 1000, "height": 600},
+    "output_formats": ["svg"],
+    "save_directory": "./output"
+}
+visualizer = HedTagVisualizer(config)
+
+# Generate visualizations
+results = visualizer.visualize_from_dataframe(
+    df,
+    schema,
+    name="my_dataset"
+)
 ```
 
-## Validating HED Strings
+### Using tag templates
 
-### Basic Validation
+Organize tags by category using templates:
 
 ```python
-from hed import HedString
+# Define which tags to include by category
+tag_template = {
+    "sensory": ["Sensory-event", "Visual-presentation", "Auditory-presentation"],
+    "actions": ["Agent-action", "Action"],
+    "timing": ["Onset", "Offset", "Duration"]
+}
 
-hed_string = HedString("Red, Blue, Green")
-issues = hed_string.validate(schema)
-
-# Check for specific types of errors
-syntax_issues = [issue for issue in issues if issue.code == 'SYNTAX_ERROR']
+results = visualizer.visualize_from_counts(
+    tag_counts,
+    tag_template=tag_template,
+    output_basename="categorized_tags"
+)
 ```
 
-### Batch Validation
+## Advanced customization
+
+### Custom color schemes
 
 ```python
-hed_strings = [
-    "Sensory-event, Visual-presentation",
-    "Invalid-tag, Another-invalid",
-    "Onset, (Red, Square)"
+from hedvis import WordCloudConfig
+
+# Use built-in matplotlib colormaps
+config = WordCloudConfig(
+    colormap="plasma",      # Options: viridis, plasma, inferno, magma, etc.
+    color_range=(0.2, 0.8)  # Use middle 60% of colormap
+)
+
+# Or use color names
+config = WordCloudConfig(
+    background_color="navy",
+    contour_color="gold"
+)
+```
+
+### Font customization
+
+```python
+config = WordCloudConfig(
+    font_path="/path/to/custom-font.ttf",
+    min_font_size=10,
+    max_font_size=150,
+    prefer_horizontal=0.95  # Nearly all horizontal text
+)
+```
+
+### Scaling and layout
+
+```python
+config = WordCloudConfig(
+    relative_scaling=0.8,        # Word size scaling factor
+    scale_adjustment=1.5,        # Frequency scaling
+    prefer_horizontal=0.75       # 75% horizontal orientation
+)
+```
+
+### Processing multiple datasets
+
+```python
+visualizer = HedTagVisualizer()
+
+datasets = [
+    ("baseline", baseline_counts),
+    ("task", task_counts),
+    ("rest", rest_counts)
 ]
 
-for i, hed_str in enumerate(hed_strings):
-    hed_string = HedString(hed_str)
-    issues = hed_string.validate(schema)
-    if issues:
-        print(f"String {i+1} has {len(issues)} issues")
+for name, counts in datasets:
+    results = visualizer.visualize_from_counts(
+        counts,
+        output_basename=f"{name}_tags"
+    )
+    results['word_cloud']['wordcloud_object'].to_file(f"{name}_cloud.png")
 ```
 
-## Working with BIDS Datasets
+## Output formats
 
-### Validating BIDS Events
+### PNG output
+
+Raster image format, good for presentations and papers:
 
 ```python
-from hed.models import TabularInput
-import pandas as pd
-
-# Load events file
-events_df = pd.read_csv("sub-01_task-rest_events.tsv", sep='\t')
-
-# Create tabular input
-tabular = TabularInput(events_df, name="events")
-
-# Validate HED annotations
-issues = tabular.validate(schema)
+wc = create_wordcloud(word_freq)
+wc.to_file("output.png")
 ```
 
-### Sidecar Processing
+### SVG output
+
+Vector format, scalable and editable:
 
 ```python
-from hed.models import Sidecar
+from hedvis import word_cloud_to_svg
 
-# Load and validate sidecar
-sidecar = Sidecar("task-rest_events.json")
-issues = sidecar.validate(schema)
+wc = create_wordcloud(word_freq)
+svg = word_cloud_to_svg(wc)
 
-# Extract HED strings
-hed_dict = sidecar.extract_definitions(schema)
+with open("output.svg", "w") as f:
+    f.write(svg)
 ```
 
-## Spreadsheet Integration
+### Automatic output management
 
-### Reading from Excel/CSV
+Let the visualizer handle file saving:
 
 ```python
-from hed.models import SpreadsheetInput
+config = VisualizationConfig(
+    output_formats=["png", "svg"],
+    save_directory="./results",
+    save_files=True
+)
 
-# Load spreadsheet
-spreadsheet = SpreadsheetInput("data.xlsx", worksheet_name="Sheet1")
+visualizer = HedTagVisualizer(config)
+results = visualizer.visualize_from_counts(tag_counts)
 
-# Validate HED columns
-issues = spreadsheet.validate(schema, hed_columns=[2, 3])
+# Files automatically saved to ./results/
 ```
 
-### Processing Multiple Files
+## Best practices
 
-```python
-import os
-from pathlib import Path
+### 1. Data preparation
 
-data_dir = Path("data/")
-for file_path in data_dir.glob("*.xlsx"):
-    spreadsheet = SpreadsheetInput(str(file_path))
-    issues = spreadsheet.validate(schema)
-    if issues:
-        print(f"Issues in {file_path.name}: {len(issues)}")
-```
+- Use hedtools to compute tag frequencies before visualization
+- Filter out unwanted tag types (e.g., `Condition-variable`, `Task`)
+- Consider using tag templates to organize visualizations by category
 
-## Advanced Usage
+### 2. Visual design
 
-### Custom Validation
+- Choose dimensions appropriate for your output medium:
+  - Presentations: 1920x1080 or 1600x900
+  - Papers: 1200x800 or 1000x600
+  - Web: 800x600 or flexible SVG
+- Use transparent backgrounds for flexibility
+- Select colormaps appropriate for your audience (colorblind-friendly when possible)
 
-```python
-from hed.validator import HedValidator
+### 3. Mask images
 
-validator = HedValidator(schema)
+- Use high-contrast black/white images for masks
+- PNG format recommended for masks
+- Ensure mask resolution matches desired output size
+- Test mask shape before applying to real data
 
-# Custom validation rules
-def custom_validation(hed_string):
-    # Your custom logic here
-    return []
+### 4. Performance
 
-# Apply custom validation
-issues = custom_validation(hed_string)
-```
+- For large datasets, compute tag counts once and reuse
+- Save intermediate results (tag counts) for reproducibility
+- Use appropriate image dimensions - larger isn't always better
 
-### Schema Manipulation
+### 5. Reproducibility
 
-```python
-# Compare schemas
-from hed.schema import schema_comparer
-
-differences = schema_comparer.compare_schemas(old_schema, new_schema)
-
-# Merge schemas
-merged_schema = old_schema.merge_with(extension_schema)
-```
-
-### Error Handling
-
-```python
-from hed.errors import HedFileError, ErrorHandler
-
-try:
-    schema = load_schema("invalid_path.xml")
-except HedFileError as e:
-    print(f"Error loading schema: {e}")
-
-# Custom error handling
-error_handler = ErrorHandler()
-error_handler.add_context("Processing file: data.xlsx")
-```
-
-## Best Practices
-
-1. **Always validate your HED strings** before using them in analysis
-2. **Use the latest schema version** unless you have specific requirements
-3. **Handle errors gracefully** in production code
-4. **Cache schemas** when processing multiple files
-5. **Use batch processing** for large datasets
+- Save configuration dictionaries alongside outputs
+- Document HED schema versions used
+- Include tag templates in documentation
+- Version control visualization scripts
 
 ## Troubleshooting
 
-### Common Issues
+### Word cloud appears empty
 
-- **Schema not found**: Ensure you have internet connection for downloading schemas
-- **Validation errors**: Check HED syntax and schema compliance
-- **File format issues**: Ensure your files are properly formatted TSV/CSV/JSON
+**Problem**: Word cloud generates but shows no words.
 
-### Getting Help
+**Solutions**:
+- Check that word_freq dictionary is not empty
+- Verify frequencies are positive numbers
+- Ensure dimensions are large enough (minimum 100x100)
+- Check if mask is blocking all text placement
 
-- Check the [API Reference](api/index.md) for detailed function documentation
-- Visit our [GitHub Issues](https://github.com/hed-standard/hed-python/issues) page
-- Consult the [HED specification](https://hed-specification.readthedocs.io/)
+### Font not found error
+
+**Problem**: Custom font path raises an error.
+
+**Solutions**:
+- Verify font file exists at specified path
+- Ensure font is .ttf, .otf, or .ttc format
+- Try with `font_path=None` (uses default)
+- Check file permissions
+
+### Mask not applied
+
+**Problem**: Mask image specified but word cloud is rectangular.
+
+**Solutions**:
+- Verify mask path is correct
+- Check mask is high-contrast (black/white)
+- Ensure mask is PNG or JPEG format
+- Try converting mask to pure black/white
+
+### Import errors
+
+**Problem**: Cannot import hedvis modules.
+
+**Solutions**:
+- Ensure installation: `pip install hedvis`
+- For development: install in editable mode `pip install -e .`
+- Activate virtual environment if using one
+- Check Python version (3.10+ required)
+
+### Colors look wrong
+
+**Problem**: Word cloud colors don't match expectations.
+
+**Solutions**:
+- Check colormap name spelling
+- Try standard colormaps: 'viridis', 'plasma', 'rainbow'
+- Adjust `color_range` parameter
+- Set `background_color` explicitly
+
+### Performance issues
+
+**Problem**: Word cloud generation is slow.
+
+**Solutions**:
+- Reduce image dimensions
+- Simplify mask if using one
+- Reduce number of words (filter low-frequency tags)
+- Check available RAM
+
+## Examples gallery
+
+### Example 1: Publication-ready word cloud
+
+```python
+from hedvis import HedTagVisualizer, WordCloudConfig, VisualizationConfig
+
+# High-quality configuration
+wc_config = WordCloudConfig(
+    width=1600,
+    height=900,
+    background_color="white",
+    colormap="viridis",
+    prefer_horizontal=0.85,
+    min_font_size=12,
+    max_font_size=100
+)
+
+viz_config = VisualizationConfig(
+    word_cloud=wc_config,
+    output_formats=["png", "svg"]
+)
+
+visualizer = HedTagVisualizer(viz_config)
+results = visualizer.visualize_from_counts(tag_counts)
+```
+
+### Example 2: Brain-shaped word cloud
+
+```python
+config = WordCloudConfig(
+    use_mask=True,
+    mask_path="brain_outline.png",
+    background_color="white",
+    contour_width=4,
+    contour_color="darkblue",
+    colormap="cool"
+)
+
+visualizer = HedTagVisualizer(VisualizationConfig(word_cloud=config))
+results = visualizer.visualize_from_counts(tag_counts)
+```
+
+### Example 3: Dark theme word cloud
+
+```python
+config = WordCloudConfig(
+    background_color="black",
+    colormap="plasma",
+    color_range=(0.3, 0.9),
+    prefer_horizontal=0.7
+)
+
+visualizer = HedTagVisualizer(VisualizationConfig(word_cloud=config))
+results = visualizer.visualize_from_counts(tag_counts)
+```
+
+## Next steps
+
+- Explore the [API reference](api/index.md) for complete function documentation
+- Check out example scripts in the `examples/` directory
+- Visit [HED resources](https://www.hed-resources.org) for more HED tutorials
+- Join discussions in the [HED forum](https://github.com/hed-standard/hed-specification/discussions)
