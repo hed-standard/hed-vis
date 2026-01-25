@@ -1,7 +1,7 @@
-API reference
-=============
+HED visualization API
+===========================
 
-This section contains the complete API reference for HED Visualization Tools (hedvis).
+This section contains the complete API reference for HED visualization tools (hedvis).
 
 .. toctree::
    :maxdepth: 2

@@ -1,25 +1,23 @@
-# HED visualization user guide
+```{index} user guide
+```
 
-This comprehensive guide shows how to use hedvis to create visualizations from HED-annotated data.
+```{index} tutorial
+```
 
-## Quick links
+# HED visualization guide
 
-- [API reference](api/index.md)
-- [GitHub issues](https://github.com/hed-standard/hed-vis/issues)
-- [HED specification](https://hed-specification.readthedocs.io/)
-- [HED online tools](https://hedtools.org)
-- [hedtools documentation](https://hed-python.readthedocs.io/)
+This comprehensive guide shows how to use {index}`hedvis` to create visualizations from {index}`HED-annotated data <dataset; HED-annotated>`.
 
 ## Table of contents
 
-1. [Getting started](#getting-started)
-2. [Basic word clouds](#basic-word-clouds)
-3. [Configuration-based API](#configuration-based-api)
-4. [Working with HED data](#working-with-hed-data)
-5. [Advanced customization](#advanced-customization)
-6. [Output formats](#output-formats)
-7. [Best practices](#best-practices)
-8. [Troubleshooting](#troubleshooting)
+1. Getting started
+2. Basic word clouds
+3. Configuration-based API
+4. Working with HED data
+5. Advanced customization
+6. Output formats
+7. Best practices
+8. Troubleshooting
 
 ## Getting started
 
@@ -43,11 +41,17 @@ from hedvis import HedTagVisualizer, VisualizationConfig, WordCloudConfig
 from hedvis import create_wordcloud, word_cloud_to_svg
 ```
 
+```{index} create_wordcloud
+```
+
+```{index} word frequency
+```
+
 ## Basic word clouds
 
 ### Simple word cloud from dictionary
 
-The easiest way to create a word cloud is from a dictionary of word frequencies:
+The easiest way to create a {index}`word cloud` is from a {index}`dictionary` of {index}`word frequencies <word frequency>`:
 
 ```python
 from hedvis import create_wordcloud
@@ -68,9 +72,12 @@ wc = create_wordcloud(word_freq, width=800, height=600)
 wc.to_file("my_wordcloud.png")
 ```
 
+```{index} word_cloud_to_svg
+```
+
 ### Converting to SVG
 
-SVG format is useful for publications and web display:
+{index}`SVG format <SVG format>` is useful for {index}`publications <visualization; publication-ready>` and web display:
 
 ```python
 from hedvis import create_wordcloud, word_cloud_to_svg
@@ -83,9 +90,12 @@ with open("wordcloud.svg", "w") as f:
     f.write(svg_string)
 ```
 
+```{index} mask_path
+```
+
 ### Using a mask image
 
-Create shaped word clouds using a mask image:
+Create {index}`shaped word clouds <word cloud; shaped>` using a {index}`mask image`:
 
 ```python
 # Use a PNG image as mask (white areas = text, black = empty)
@@ -95,6 +105,15 @@ wc = create_wordcloud(
     background_color="white"
 )
 wc.to_file("shaped_wordcloud.png")
+```
+
+```{index} background_color
+```
+
+```{index} font size
+```
+
+```{index} colormap; viridis
 ```
 
 ### Customizing appearance
@@ -112,9 +131,18 @@ wc = create_wordcloud(
 )
 ```
 
+```{index} VisualizationConfig
+```
+
+```{index} WordCloudConfig
+```
+
+```{index} configuration; dictionary
+```
+
 ## Configuration-based API
 
-The new API provides a more structured approach using configuration objects.
+The new {index}`API` provides a more structured approach using {index}`configuration objects <configuration>`.
 
 ### Using configuration dictionaries
 
@@ -184,11 +212,17 @@ viz_config = VisualizationConfig(word_cloud=wc_config)
 visualizer = HedTagVisualizer(viz_config)
 ```
 
+```{index} HedTagCounts
+```
+
+```{index} tag counts
+```
+
 ## Working with HED data
 
 ### From pre-computed tag counts
 
-If you've already computed tag frequencies using hedtools:
+If you've already computed {index}`tag frequencies <tag frequency>` using {index}`hedtools`:
 
 ```python
 from hed.tools.analysis.hed_tag_counts import HedTagCounts
@@ -205,9 +239,18 @@ wc = results['word_cloud']['wordcloud_object']
 wc.to_file("hed_tags.png")
 ```
 
+```{index} TabularInput
+```
+
+```{index} sidecar file
+```
+
+```{index} events file
+```
+
 ### From tabular data
 
-Visualize directly from BIDS-style tabular data:
+Visualize directly from {index}`BIDS-style <BIDS dataset>` {index}`tabular data`:
 
 ```python
 from hed import load_schema
@@ -239,9 +282,15 @@ wc = results['word_cloud']['wordcloud_object']
 wc.to_file("experiment_wordcloud.png")
 ```
 
+```{index} pandas DataFrame
+```
+
+```{index} visualize_from_dataframe
+```
+
 ### From pandas DataFrame
 
-Work directly with pandas DataFrames:
+Work directly with {index}`pandas DataFrames <pandas DataFrame>`:
 
 ```python
 import pandas as pd
@@ -289,6 +338,18 @@ results = visualizer.visualize_from_counts(
 )
 ```
 
+```{index} customization
+```
+
+```{index} colormap; plasma
+```
+
+```{index} colormap; matplotlib
+```
+
+```{index} color_range
+```
+
 ## Advanced customization
 
 ### Custom color schemes
@@ -307,6 +368,15 @@ config = WordCloudConfig(
     background_color="navy",
     contour_color="gold"
 )
+```
+
+```{index} font_path
+```
+
+```{index} font; custom
+```
+
+```{index} prefer_horizontal
 ```
 
 ### Font customization
@@ -391,13 +461,22 @@ results = visualizer.visualize_from_counts(tag_counts)
 # Files automatically saved to ./results/
 ```
 
+```{index} best practices
+```
+
+```{index} data preparation
+```
+
+```{index} tag; filtering
+```
+
 ## Best practices
 
 ### 1. Data preparation
 
-- Use hedtools to compute tag frequencies before visualization
-- Filter out unwanted tag types (e.g., `Condition-variable`, `Task`)
-- Consider using tag templates to organize visualizations by category
+- Use {index}`hedtools` to compute {index}`tag frequencies <tag frequency>` before visualization
+- {index}`Filter <tag; filtering>` out unwanted tag types (e.g., `Condition-variable`, `Task`)
+- Consider using {index}`tag templates <tag template>` to organize visualizations by category
 
 ### 2. Visual design
 
@@ -428,11 +507,17 @@ results = visualizer.visualize_from_counts(tag_counts)
 - Include tag templates in documentation
 - Version control visualization scripts
 
+```{index} troubleshooting
+```
+
+```{index} errors; empty word cloud
+```
+
 ## Troubleshooting
 
 ### Word cloud appears empty
 
-**Problem**: Word cloud generates but shows no words.
+**Problem**: {index}`Word cloud` generates but shows no words.
 
 **Solutions**:
 
@@ -441,9 +526,12 @@ results = visualizer.visualize_from_counts(tag_counts)
 - Ensure dimensions are large enough (minimum 100x100)
 - Check if mask is blocking all text placement
 
+```{index} errors; font not found
+```
+
 ### Font not found error
 
-**Problem**: Custom font path raises an error.
+**Problem**: Custom {index}`font path <font_path>` raises an error.
 
 **Solutions**:
 
@@ -452,9 +540,12 @@ results = visualizer.visualize_from_counts(tag_counts)
 - Try with `font_path=None` (uses default)
 - Check file permissions
 
+```{index} errors; mask not applied
+```
+
 ### Mask not applied
 
-**Problem**: Mask image specified but word cloud is rectangular.
+**Problem**: {index}`Mask image` specified but word cloud is rectangular.
 
 **Solutions**:
 
@@ -463,9 +554,15 @@ results = visualizer.visualize_from_counts(tag_counts)
 - Ensure mask is PNG or JPEG format
 - Try converting mask to pure black/white
 
+```{index} errors; import
+```
+
+```{index} installation
+```
+
 ### Import errors
 
-**Problem**: Cannot import hedvis modules.
+**Problem**: Cannot import {index}`hedvis` modules.
 
 **Solutions**:
 
@@ -484,6 +581,12 @@ results = visualizer.visualize_from_counts(tag_counts)
 - Try standard colormaps: 'viridis', 'plasma', 'rainbow'
 - Adjust `color_range` parameter
 - Set `background_color` explicitly
+
+```{index} performance
+```
+
+```{index} optimization
+```
 
 ### Performance issues
 
@@ -555,7 +658,7 @@ results = visualizer.visualize_from_counts(tag_counts)
 
 ## Next steps
 
-- Explore the [API reference](api/index.md) for complete function documentation
+- Explore the [API reference](api/index.rst) for complete function documentation
 - Check out example scripts in the `examples/` directory
 - Visit [HED resources](https://www.hed-resources.org) for more HED tutorials
 - Join discussions in the [HED forum](https://github.com/hed-standard/hed-specification/discussions)
