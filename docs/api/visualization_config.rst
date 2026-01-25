@@ -5,7 +5,6 @@ Visualization configuration
 ---------------------------
 
 .. automodule:: hedvis.core.visualization_config
-   :members:
    :undoc-members:
    :show-inheritance:
 
@@ -14,7 +13,6 @@ VisualizationConfig
 
 .. autoclass:: hedvis.core.visualization_config.VisualizationConfig
    :members:
-   :undoc-members:
    :show-inheritance:
 
    Main configuration class for visualization generation.
@@ -52,7 +50,6 @@ WordCloudConfig
 
 .. autoclass:: hedvis.core.visualization_config.WordCloudConfig
    :members:
-   :undoc-members:
    :show-inheritance:
 
    Configuration for word cloud visualizations.

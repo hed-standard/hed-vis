@@ -9,13 +9,11 @@ Welcome to the HED visualization tool (hedvis) documentation. This package provi
    :maxdepth: 2
    :caption: Contents:
 
-   introduction
+   overview
    user_guide
    api/index
 
-Indices and tables
-==================
+Index
+-----
 
 * :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

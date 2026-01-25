@@ -1,11 +1,10 @@
 Word cloud generators
-====================
+=====================
 
 Word cloud creation
 -------------------
 
 .. automodule:: hedvis.generators.word_cloud
-   :members:
    :undoc-members:
    :show-inheritance:
 

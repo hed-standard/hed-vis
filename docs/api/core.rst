@@ -5,7 +5,6 @@ Main visualization interface
 -----------------------------
 
 .. automodule:: hedvis.core.tag_visualizer
-   :members:
    :undoc-members:
    :show-inheritance:
 
@@ -14,7 +13,6 @@ HedTagVisualizer
 
 .. autoclass:: hedvis.core.tag_visualizer.HedTagVisualizer
    :members:
-   :undoc-members:
    :show-inheritance:
 
    The main class for generating HED tag visualizations.
@@ -47,6 +45,5 @@ Sequence map
 ------------
 
 .. automodule:: hedvis.core.sequence_map
-   :members:
    :undoc-members:
    :show-inheritance:
