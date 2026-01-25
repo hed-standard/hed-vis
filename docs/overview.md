@@ -77,6 +77,14 @@ This package is a companion library to [hedtools](https://github.com/hed-standar
 
 ## Installing hedvis
 
+Install from PyPI:
+
+```bash
+pip install hedvis
+```
+
+This automatically installs hedtools and other required dependencies.
+
 Install directly from the [GitHub repository](https://github.com/hed-standard/hed-vis):
 
 ```bash
