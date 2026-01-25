@@ -1,24 +1,51 @@
-API Reference
+API reference
 =============
 
-This section contains the complete API reference for HED Python Tools.
+This section contains the complete API reference for HED Visualization Tools (hedvis).
 
 .. toctree::
    :maxdepth: 2
 
-   models
-   schema
-   validator
-   tools
-   errors
+   core
+   generators
+   visualization_config
 
-Core Modules Overview
+Core modules overview
 ---------------------
 
-The HED Python Tools package is organized into several key modules:
+The hedvis package is organized into several key modules:
 
-* **Models**: Core data structures for HED annotations and tags
-* **Schema**: HED schema management and validation
-* **Validator**: Validation tools for HED data
-* **Tools**: Utility functions and data processing tools
-* **Errors**: Error handling and reporting classes
+* **Core**: Main visualization API with `HedTagVisualizer` class
+* **Generators**: Word cloud generation functions and utilities
+* **Configuration**: Configuration classes for customizing visualizations
+
+Quick API reference
+-------------------
+
+New API (Recommended)
+~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+   from hedvis import HedTagVisualizer, VisualizationConfig, WordCloudConfig
+
+   # Create visualizer with configuration
+   config = WordCloudConfig(width=800, height=600)
+   visualizer = HedTagVisualizer(VisualizationConfig(word_cloud=config))
+
+   # Generate visualizations from tag counts
+   results = visualizer.visualize_from_counts(tag_counts)
+
+Legacy API
+~~~~~~~~~~
+
+.. code-block:: python
+
+   from hedvis import create_wordcloud, word_cloud_to_svg
+
+   # Create word cloud from dictionary
+   wc = create_wordcloud(word_freq, width=800, height=600)
+   wc.to_file("output.png")
+
+   # Convert to SVG
+   svg = word_cloud_to_svg(wc)

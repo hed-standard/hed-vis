@@ -3,15 +3,21 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import os
+import sys
+
+# Add the parent directory to the path so we can import hedvis
+sys.path.insert(0, os.path.abspath(".."))
+
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "HED Python Tools"
-copyright = "2024, HED Standard"
+project = "HED Visualization Tools"
+copyright = "2024-2026, HED Standard"
 author = "HED Standard"
 
 # The full version, including alpha/beta/rc tags
-release = "0.8.0"
+release = "0.1.0"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -51,12 +57,12 @@ html_theme_options = {
         "color-brand-primary": "#58a6ff",
         "color-brand-content": "#58a6ff",
     },
-    "source_repository": "https://github.com/hed-standard/hed-python/",
+    "source_repository": "https://github.com/hed-standard/hed-vis/",
     "source_branch": "main",
     "source_directory": "docs/",
 }
 
-html_title = "HED Python Tools"
+html_title = "HED visualization"
 
 # Configure sidebar to show logo, search, navigation, and quick links
 html_sidebars = {
@@ -103,6 +109,7 @@ intersphinx_mapping = {
     "python": ("https://docs.python.org/3/", None),
     "numpy": ("https://numpy.org/doc/stable/", None),
     "pandas": ("https://pandas.pydata.org/pandas-docs/stable/", None),
+    "hedtools": ("https://hed-python.readthedocs.io/en/latest/", None),
 }
 
 # MyST parser settings
