@@ -1,8 +1,6 @@
 # hed-vis
 
-[![Documentation Status](https://readthedocs.org/projects/hed-vis/badge/?version=latest)](https://hed-vis.readthedocs.io/en/latest/?badge=latest)
-[![PyPI version](https://badge.fury.io/py/hedvis.svg)](https://badge.fury.io/py/hedvis)
-[![Python](https://img.shields.io/pypi/pyversions/hedvis.svg)](https://pypi.org/project/hedvis/)
+[![Documentation Status](https://readthedocs.org/projects/hed-vis/badge/?version=latest)](https://hed-vis.readthedocs.io/en/latest/?badge=latest) [![PyPI version](https://badge.fury.io/py/hedvis.svg)](https://badge.fury.io/py/hedvis) [![Python](https://img.shields.io/pypi/pyversions/hedvis.svg)](https://pypi.org/project/hedvis/)
 
 Visualization tools for HED (Hierarchical Event Descriptors) annotated datasets.
 
