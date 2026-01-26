@@ -110,7 +110,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   
 - **Continuous Integration**:
   - Multi-platform testing (Linux, Windows, macOS)
-  - Python version matrix testing (3.10, 3.11, 3.12, 3.13)
+  - Python version matrix testing (3.10, 3.11, 3.12, 3.13, 3.14)
   - Code coverage reporting with codecov
   - Automated code quality checks:
     - Black code formatter validation
