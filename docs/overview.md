@@ -16,8 +16,6 @@ myst:
 
 # HED visualization overview
 
-## Introduction
-
 **hedvis** (HED Visualization Tools) is a Python package that provides visualization utilities for {index}`HED (Hierarchical Event Descriptors)` annotated datasets. It focuses specifically on creating {index}`word clouds <word cloud>` and {index}`visual summaries <visualization>` from HED tag data.
 
 This package is a companion library to [hedtools](https://github.com/hed-standard/hed-python), the core HED Python tools package. While hedtools handles HED schema management, validation, and data processing, hedvis provides specialized visualization capabilities.
@@ -49,7 +47,7 @@ This package is a companion library to [hedtools](https://github.com/hed-standar
 ```{index} SVG format
 ```
 
-## Key features
+## Key hedvis features
 
 ### Word cloud generation
 
@@ -220,5 +218,5 @@ If you encounter bugs or have feature requests:
 
 - **hedvis issues**: [open an issue](https://github.com/hed-standard/hed-vis/issues) in the hed-vis repository
 - **hedtools issues**: [open an issue](https://github.com/hed-standard/hed-python/issues) in the hed-python repository
-
-For questions or ideas about HED in general, visit and contribute to the [HED organization discussions](https://github.com/orgs/hed-standard/discussions).
+- **Questions or ideas**: [HED organization discussions][HED organization discussions](https://github.com/orgs/hed-standard/discussions)
+- **Contact**: [hed.maintainers@gmail.com](mailto:hed.maintainers@gmail.com)

@@ -17,16 +17,16 @@ This comprehensive guide shows how to use {index}`hedvis` to create visualizatio
 
 ## Table of contents
 
-1. Getting started
-2. Basic word clouds
-3. Configuration-based API
-4. Working with HED data
-5. Advanced customization
-6. Output formats
-7. Best practices
-8. Troubleshooting
+1. [Getting started](#getting-started)
+2. [Basic word clouds](#basic-word-clouds)
+3. [Configuration-based API](#configuration-based-api)
+4. [Working with HED data](#working-with-hed-data)
+5. [Advanced customization](#advanced-customization)
+6. [Output formats](#output-formats)
+7. [Best practices](#best-practices)
+8. [Troubleshooting](#troubleshooting)
 
-## Getting started
+## Getting started with hedvis
 
 ```{index} getting started
 ```

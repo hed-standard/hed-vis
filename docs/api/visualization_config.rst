@@ -1,5 +1,5 @@
-Configuration classes
-=====================
+hedvis configuration classes
+============================
 
 Visualization configuration
 ---------------------------
