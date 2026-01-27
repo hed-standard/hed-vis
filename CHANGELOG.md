@@ -2,15 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.1.0] - 2026-01-26
 
 ### Added
 
 #### Core Features
+
 - **HedTagVisualizer API**: Modern configuration-based interface for generating visualizations from HED-annotated data
+
   - Support for creating word clouds from HED tag frequency data
   - Integration with hedtools data structures (HedTagCounts, TabularInput, HedString)
   - Flexible configuration system using VisualizationConfig and WordCloudConfig classes
@@ -18,13 +19,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Direct processing from tabular data or pre-computed tag counts
   - Tag template support for organizing tags by categories
   - Context-aware tag processing with options for including context and replacing definitions
-  
+
 - **Legacy Word Cloud API**: Simple functional interface for quick word cloud generation
+
   - `create_wordcloud()`: Create word clouds from frequency dictionaries
   - `word_cloud_to_svg()`: Export word clouds to SVG format
   - Backward compatibility support for users familiar with simpler APIs
-  
+
 - **Word Cloud Customization**:
+
   - Configurable dimensions (width and height)
   - Custom background colors with transparency support
   - Mask image support for shaped word clouds (with built-in brain mask)
@@ -34,11 +37,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Smart automatic sizing with minimum size constraints
 
 - **Sequence Map Utility**: Class for mapping between event sequences and display text
+
   - Convert between compact and verbose event representations
   - Tag template-based categorization
   - Count tracking for frequency analysis
 
 #### Command-Line Tools
+
 - **visualize_hed_tags.py**: Comprehensive CLI script for batch processing
   - Process entire directory trees of HED-annotated TSV files
   - Automatic discovery and pairing of event files with JSON sidecars
@@ -52,6 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Support for BIDS-style dataset organization
 
 #### Testing Infrastructure
+
 - Comprehensive test suite with 100+ test cases
   - `test_tag_visualizer.py`: Tests for HedTagVisualizer class and core visualization logic
   - `test_tag_word_cloud.py`: Tests for legacy word cloud API
@@ -63,35 +69,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Output format verification tests
 
 #### Documentation
+
 - **Complete Sphinx Documentation**:
+
   - Overview and introduction to hedvis
   - Comprehensive user guide with multiple examples
   - Detailed API reference for all public classes and functions
   - Integration guides for hedtools workflows
   - Custom CSS styling and branding
   - Read the Docs integration
-  
+
 - **README.md**: Quick start guide with examples
+
   - Installation instructions
   - Feature highlights
   - Usage examples for both new and legacy APIs
   - Integration examples with hedtools
   - Links to documentation and related projects
-  
+
 - **CONTRIBUTING.md**: Contribution guidelines
+
   - Development setup instructions
   - Coding standards and best practices
   - Testing guidelines
   - Pull request process
   - Code quality requirements
-  
+
 - **RELEASE_GUIDE.md**: Detailed release procedures
+
   - Step-by-step release checklist
   - PyPI publishing instructions
   - Version management guidelines
   - Pre-release validation steps
 
 #### Examples
+
 - `quick_demo.py`: Demonstration script showing:
   - Dictionary-based configuration
   - Object-oriented configuration with config classes
@@ -99,7 +111,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - SVG generation
 
 #### Development Infrastructure
+
 - **Package Configuration**:
+
   - Modern pyproject.toml-based packaging
   - Support for Python 3.10 through 3.14
   - Comprehensive dependency management
@@ -107,8 +121,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Development dependencies specification
   - Black code formatter configuration
   - Ruff linter configuration
-  
+
 - **Continuous Integration**:
+
   - Multi-platform testing (Linux, Windows, macOS)
   - Python version matrix testing (3.10, 3.11, 3.12, 3.13, 3.14)
   - Code coverage reporting with codecov
@@ -121,24 +136,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Documentation building and deployment
   - Test installer verification
   - Dependabot for automated dependency updates
-  
+
 - **Code Quality Tools**:
+
   - Black formatter configuration
   - Ruff linter with custom rules
   - Codespell with custom dictionary
   - Pre-commit hook support
   - Coverage configuration with exclusions
-  
+
 - **Git Configuration**:
+
   - Comprehensive .gitignore for Python projects
   - .gitattributes for consistent line endings
   - Git submodules configuration
 
 #### Resources
+
 - Built-in brain mask image for shaped word clouds
 - Default color schemes optimized for tag visualization
 
 ### Dependencies
+
 - hedtools >= 0.8.1 for HED processing
 - wordcloud for word cloud generation
 - matplotlib >= 3.9.0 for visualization
@@ -148,6 +167,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Additional utility dependencies (click, jsonschema, inflect, etc.)
 
 ### Infrastructure
+
 - MIT License
 - GitHub Actions CI/CD pipeline
 - PyPI package distribution
@@ -155,6 +175,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Code coverage tracking
 - Automated dependency updates
 
----
+______________________________________________________________________
 
 **Note**: This is the initial public release of hedvis. The package provides visualization tools specifically designed for HED (Hierarchical Event Descriptors) annotated datasets, with a focus on word cloud generation and visual summaries. It integrates seamlessly with the hedtools ecosystem while providing both modern and legacy APIs for flexibility.
