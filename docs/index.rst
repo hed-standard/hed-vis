@@ -9,9 +9,9 @@ Welcome to the HED visualization tool (hedvis) documentation. This package provi
    :maxdepth: 2
    :caption: Contents:
 
-   overview
-   user_guide
-   api/index
+   Visualization overview <overview>
+   Visualization guide <guide>
+   Visualization API <api/index>
 
 Index
 -----

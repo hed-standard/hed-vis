@@ -10,7 +10,7 @@ This section contains the complete API reference for HED visualization tools (he
    generators
    visualization_config
 
-Core modules overview
+Core hedvis modules
 ---------------------
 
 The hedvis package is organized into several key modules:
