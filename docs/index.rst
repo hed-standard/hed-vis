@@ -10,7 +10,7 @@ Welcome to the HED visualization tool (hedvis) documentation. This package provi
    :caption: Contents:
 
    Visualization overview <overview>
-   Visualization guide <guide>
+   Visualization guide <user_guide>
    Visualization API <api/index>
 
 Index
