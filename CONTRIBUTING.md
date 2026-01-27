@@ -73,9 +73,6 @@ This project adheres to a code of conduct that we expect all contributors to fol
    ```bash
    # Documentation tools
    pip install -e ".[docs]"
-
-   # All optional dependencies
-   pip install -e ".[all]"
    ```
 
    **Note:** Do not use legacy requirements files (`requirements.txt`, `requirements-dev.txt`). All dependencies are defined in `pyproject.toml`.

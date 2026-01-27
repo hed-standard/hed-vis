@@ -73,7 +73,7 @@ pip install "hedvis[dev]"
 # From local source (after cloning)
 pip install ".[dev]"          # Regular install
 
-# Editable local source install for active development)
+# Editable local source install for active development
 pip install -e ".[dev]"       # Editable install 
 ```
 
