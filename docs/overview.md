@@ -1,3 +1,10 @@
+---
+myst:
+  html_meta:
+    description: HED visualization overview - Introduction to hedvis for creating word clouds and visual summaries
+    keywords: HED visualization, hedvis overview, word cloud generation, HED tools, neuroscience visualization
+---
+
 ```{index} visualization; HED
 ```
 
@@ -77,13 +84,68 @@ This package is a companion library to [hedtools](https://github.com/hed-standar
 
 ## Installing hedvis
 
+```{index} installation
+```
+
+```{index} PyPI
+```
+
 Install from PyPI:
 
 ```bash
 pip install hedvis
 ```
 
-This automatically installs hedtools and other required dependencies.
+This automatically installs hedtools and all required dependencies.
+
+### Installing with Optional Dependencies
+
+```{index} dependencies; optional
+```
+
+```{index} pip extras
+```
+
+```{index} pyproject.toml
+```
+
+**All dependencies are managed in `pyproject.toml`.** Install optional extras as needed.
+
+**Important:** Installing with extras automatically includes all base dependencies (hedtools, numpy, pandas, matplotlib, etc.) plus the extra tools.
+
+**Key distinction:**
+
+- Use `"hedvis[extra]"` when installing from **PyPI** (the published package)
+- Use `".[extra]"` when installing from **local source** (after cloning the repository)
+
+```bash
+# Development tools (formatting, linting, testing)
+# From PyPI
+pip install "hedvis[dev]"
+# From local source
+pip install ".[dev]"          # Regular install
+pip install -e ".[dev]"       # Editable install (recommended for development)
+
+# Documentation tools (Sphinx, themes)
+# From PyPI
+pip install "hedvis[docs]"
+# From local source
+pip install ".[docs]"
+
+# Both dev and docs dependencies
+# From PyPI
+pip install "hedvis[dev,docs]"
+# From local source
+pip install ".[dev,docs]"
+```
+
+For development work (clone and install in editable mode):
+
+```bash
+git clone https://github.com/hed-standard/hed-vis.git
+cd hed-vis
+pip install -e ".[dev]"
+```
 
 Install directly from the [GitHub repository](https://github.com/hed-standard/hed-vis):
 
@@ -91,7 +153,15 @@ Install directly from the [GitHub repository](https://github.com/hed-standard/he
 pip install git+https://github.com/hed-standard/hed-vis.git
 ```
 
+**Note:** All dependencies are defined in `pyproject.toml`. Legacy requirements files (`requirements.txt`, `requirements-dev.txt`, `docs/requirements.txt`) are deprecated and will be removed in a future release.
+
 ## Quick example
+
+```{index} quick start
+```
+
+```{index} examples
+```
 
 ```python
 from hedvis import HedTagVisualizer
@@ -108,19 +178,43 @@ results['word_cloud']['wordcloud_object'].to_file('output.png')
 
 ## Related projects
 
+```{index} related projects
+```
+
+```{index} hed-python
+```
+
+```{index} hed-schemas
+```
+
 - **[hed-python](https://github.com/hed-standard/hed-python)**: Core HED Python tools for validation, schema management, and analysis
 - **[hed-schemas](https://github.com/hed-standard/hed-schemas)**: Official HED schemas in multiple formats
 - **[table-remodeler](https://github.com/hed-standard/table-remodeler)**: Python tools for manipulating and restructuring tables
 
 ## Finding help
 
+```{index} help
+```
+
+```{index} support
+```
+
 ### Documentation
+
+```{index} documentation
+```
 
 - See this documentation for detailed usage guides and API reference
 - Visit [HED resources](https://www.hedtags.org/hed-resources) for general HED documentation
 - Check the [Python hedtools documentation](https://www.hedtags.org/hed-python) for core HED functionality
 
 ### Issues and problems
+
+```{index} issues
+```
+
+```{index} bug reports
+```
 
 If you encounter bugs or have feature requests:
 

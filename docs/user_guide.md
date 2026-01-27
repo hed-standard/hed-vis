@@ -1,3 +1,10 @@
+---
+myst:
+  html_meta:
+    description: HED visualization user guide - Comprehensive guide for creating visualizations from HED-annotated data
+    keywords: HED visualization, word cloud tutorial, hedvis guide, HED tools, configuration API
+---
+
 ```{index} user guide
 ```
 
@@ -21,7 +28,13 @@ This comprehensive guide shows how to use {index}`hedvis` to create visualizatio
 
 ## Getting started
 
+```{index} getting started
+```
+
 ### Installation
+
+```{index} installation
+```
 
 Install hedvis from PyPI:
 
@@ -29,9 +42,102 @@ Install hedvis from PyPI:
 pip install hedvis
 ```
 
-This automatically installs hedtools and other dependencies.
+This automatically installs hedtools and all required dependencies.
+
+#### Installing with Optional Dependencies
+
+```{index} dependencies; optional
+```
+
+```{index} pip extras
+```
+
+```{index} pyproject.toml
+```
+
+**All dependencies are managed in `pyproject.toml`, which is the single source of truth.** Install optional extras as needed.
+
+**Important:** When you install with extras (e.g., `[dev]` or `[docs]`), pip automatically installs all base dependencies (hedtools, numpy, pandas, matplotlib, etc.) plus the specified extra tools. You don't need a separate installation step for base dependencies.
+
+**Key distinction:**
+
+- Use `"hedvis[extra]"` when installing from **PyPI** (the published package)
+- Use `".[extra]"` when installing from **local source** (after cloning the repository)
+
+**Development tools** (formatting, linting, testing):
+
+```bash
+# From PyPI
+pip install "hedvis[dev]"
+
+# From local source (after cloning)
+pip install ".[dev]"          # Regular install
+
+# Editable local source install for active development)
+pip install -e ".[dev]"       # Editable install 
+```
+
+**Documentation tools** (Sphinx, themes):
+
+```bash
+# From PyPI
+pip install "hedvis[docs]"
+
+# From local source
+pip install ".[docs]"
+```
+
+**Both dev and docs dependencies**:
+
+```bash
+# From PyPI
+pip install "hedvis[dev,docs]"
+
+# From local source
+pip install ".[dev,docs]"
+```
+
+**For development** (editable installation from source):
+
+```bash
+git clone https://github.com/hed-standard/hed-vis.git
+cd hed-vis
+pip install -e ".[dev]"
+```
+
+#### Installing from Source (Core Dependencies Only)
+
+To install from source without optional dependencies:
+
+```bash
+git clone https://github.com/hed-standard/hed-vis.git
+cd hed-vis
+pip install .
+```
+
+#### Legacy Requirements Files
+
+```{index} requirements files; deprecated
+```
+
+```{index} migration; dependencies
+```
+
+**Important:** Legacy requirements files (`requirements.txt`, `requirements-dev.txt`, `docs/requirements.txt`) are deprecated and will be removed in a future release. All dependencies are now managed exclusively in `pyproject.toml`.
+
+Do not use:
+
+- ~~`pip install -r requirements.txt`~~ → Use `pip install .` or `pip install hedvis`
+- ~~`pip install -r requirements-dev.txt`~~ → Use `pip install ".[dev]"`
+- ~~`pip install -r docs/requirements.txt`~~ → Use `pip install ".[docs]"`
 
 ### Basic imports
+
+```{index} imports; basic
+```
+
+```{index} API; new
+```
 
 ```python
 # New API (recommended)
@@ -141,6 +247,12 @@ wc = create_wordcloud(
 ```
 
 ## Configuration-based API
+
+```{index} configuration; API
+```
+
+```{index} HedTagVisualizer
+```
 
 The new {index}`API` provides a more structured approach using {index}`configuration objects <configuration>`.
 

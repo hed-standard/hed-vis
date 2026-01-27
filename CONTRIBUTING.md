@@ -41,25 +41,44 @@ This project adheres to a code of conduct that we expect all contributors to fol
 1. **Fork and clone the repository:**
 
    ```bash
-   git clone https://github.com/YOUR_USERNAME/hed-python.git
-   cd hed-python
+   git clone https://github.com/YOUR_USERNAME/hed-vis.git
+   cd hed-vis
    ```
 
 2. **Create a virtual environment (recommended):**
 
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   python -m venv .venv
+   .venv\Scripts\activate  # On Windows PowerShell
+   source .venv/bin/activate  # On Unix/MacOS
    ```
 
 3. **Install in development mode:**
 
+   All dependencies are managed in `pyproject.toml`. Install the package with development tools:
+
    ```bash
-   pip install -e .
-   pip install -r requirements.txt
-   pip install -r docs/requirements.txt
-   pip install -e .[dev]  # Install development tools (black, ruff, codespell)
+   pip install -e ".[dev]"
    ```
+
+   This installs:
+
+   - The hedvis package in editable mode
+   - All required dependencies (hedtools, wordcloud, matplotlib, etc.)
+   - Development tools (black, ruff, codespell, mdformat)
+   - Testing tools (coverage)
+
+   To install additional optional dependencies:
+
+   ```bash
+   # Documentation tools
+   pip install -e ".[docs]"
+
+   # All optional dependencies
+   pip install -e ".[all]"
+   ```
+
+   **Note:** Do not use legacy requirements files (`requirements.txt`, `requirements-dev.txt`). All dependencies are defined in `pyproject.toml`.
 
 4. **Run tests to verify setup:**
 
