@@ -232,10 +232,11 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 
 ## Support
 
-- [Documentation](https://www.hedtags.org/hed-vis)
-- [GitHub issues](https://github.com/hed-standard/hed-vis/issues)
-- [Ideas or questions](https://github.com/orgs/hed-standard/discussions)
-- [HED Homepage](https://www.hedtags.org)
+- HED homepage: [https://www.hedtags.org](https://www.hedtags.org)
+- Repo docs: [https://www.hedtags.org/hed-vis](https://www.hedtags.org/hed-vis)
+- GitHub issues: [https://github.com/hed-standard/hed-vis/issues](https://github.com/hed-standard/hed-vis/issues)
+- Ideas or questions: [https://github.com/orgs/hed-standard/discussions](https://github.com/orgs/hed-standard/discussions)
+- HED Homepage: [https://www.hedtags.org](https://www.hedtags.org)
 - Contact: [hed-maintainers@gmail.com](mailto:hed-maintainers@gmail.com)
 
 ## License
