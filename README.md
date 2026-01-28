@@ -1,5 +1,6 @@
 ![PyPI - Status](https://img.shields.io/pypi/v/hedvis) ![Python3](https://img.shields.io/badge/python-%3E=3.10-yellow.svg) [![Maintainability](https://qlty.sh/gh/hed-standard/projects/hed-vis/maintainability.svg)](https://qlty.sh/gh/hed-standard/projects/hed-vis) [![Code Coverage](https://qlty.sh/gh/hed-standard/projects/hed-vis/coverage.svg)](https://qlty.sh/gh/hed-standard/projects/hed-vis) [![Docs](https://img.shields.io/badge/docs-hed--vis-blue.svg)](https://www.hedtags.org/hed-vis)
 
+
 # HED visualization
 
 **hedvis** provides word cloud generation and visual summaries for HED-annotated data, making it easy to explore and present the semantic content of your experimental datasets.
