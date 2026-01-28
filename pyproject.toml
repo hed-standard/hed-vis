@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hedvis"
-version = "0.1.0"
+version = "0.1.1"
 description = "HED validation, summary, and analysis tools for annotating events and experimental metadata."
 readme = "README.md"
 authors = [

@@ -1,4 +1,4 @@
-![PyPI version](https://badge.fury.io/py/hedvis.svg) ![Python3](https://img.shields.io/badge/python-%3E=3.10-yellow.svg) [![Docs](https://img.shields.io/badge/docs-hedvis-blue.svg)](https://www.hedtags.org/hed-vis)
+![PyPI - Status](https://img.shields.io/pypi/v/hedvis) ![Python3](https://img.shields.io/badge/python-%3E=3.10-yellow.svg) [![Docs](https://img.shields.io/badge/docs-hedvis-blue.svg)](https://www.hedtags.org/hed-vis)
 
 # HED visualization hed
 
