@@ -1,23 +1,21 @@
-![PyPI - Status](https://img.shields.io/pypi/v/hedvis) ![Python3](https://img.shields.io/badge/python-%3E=3.10-yellow.svg) [![Docs](https://img.shields.io/badge/docs-hedvis-blue.svg)](https://www.hedtags.org/hed-vis)
+![PyPI - Status](https://img.shields.io/pypi/v/hedvis) ![Python3](https://img.shields.io/badge/python-%3E=3.10-yellow.svg) [![Maintainability](https://qlty.sh/gh/hed-standard/projects/hed-vis/maintainability.svg)](https://qlty.sh/gh/hed-standard/projects/hed-vis) [![Code Coverage](https://qlty.sh/gh/hed-standard/projects/hed-vis/coverage.svg)](https://qlty.sh/gh/hed-standard/projects/hed-vis) [![Docs](https://img.shields.io/badge/docs-hed--vis-blue.svg)](https://www.hedtags.org/hed-vis)
 
-# HED visualization hed
+# HED visualization
 
-Visualization tools for `HED (Hierarchical Event Descriptors)` annotated datasets.
-
-**hedvis** provides `word cloud` generation and `visual summaries <visualization>` for `HED-annotated data <dataset; HED-annotated>`, making it easy to explore and present the semantic content of your experimental datasets.
+**hedvis** provides word cloud generation and visual summaries for HED-annotated data \<dataset; HED-annotated, making it easy to explore and present the semantic content of your experimental datasets.
 
 ## Features
 
-- **Word Cloud Generation** - Create beautiful word clouds from `HED tag frequencies <tag frequency>`
-- **Flexible Configuration** - Extensive `customization <configuration>` options for visualizations
-- **Shaped Clouds** - Support for `mask images <mask image>` to create custom-shaped word clouds
-- **Multiple Formats** - Export to `PNG <PNG format>` and `SVG <SVG format>` formats
-- **hedtools Integration** - Seamless integration with the `HED Python tools <hedtools>` ecosystem
-- **Two APIs** - Modern `configuration-based API <VisualizationConfig>` and simple `legacy API <API; legacy>` for quick tasks
+- **Word Cloud Generation** - Create beautiful word clouds from HED tag frequencies
+- **Flexible Configuration** - Extensive customization options for visualizations
+- **Shaped Clouds** - Support for mask images to create custom-shaped word clouds
+- **Multiple Formats** - Export to PNG and SVG formats
+- **hedtools Integration** - Seamless integration with the HED Python tools ecosystem
+- **Two APIs** - Modern configuration-based API VisualizationConfig and simple legacy API for quick tasks
 
 ## Installation
 
-### From PyPI (Recommended)
+### From PyPI (recommended)
 
 Install the latest stable release:
 
@@ -27,7 +25,7 @@ pip install hedvis
 
 This automatically installs hedtools and all required dependencies.
 
-### Development Installation
+### Development installation
 
 For development work, clone the repository and install in editable mode:
 
@@ -37,7 +35,7 @@ cd hed-vis
 pip install -e .
 ```
 
-### Installing Optional Dependencies
+### Installing optional dependencies
 
 **The project uses `pyproject.toml` as the single source of truth for all dependencies.** Install optional dependencies using pip extras.
 
@@ -74,7 +72,7 @@ pip install "hedvis[dev,docs]"
 pip install ".[dev,docs]"
 ```
 
-### Installing from Source Without Extras
+### Installing from source without extras
 
 To install from source with only the core dependencies:
 
@@ -84,19 +82,15 @@ cd hed-vis
 pip install .
 ```
 
-### Legacy Requirements Files
-
-**Important:** Legacy requirements files (`requirements.txt`, `requirements-dev.txt`, `docs/requirements.txt`) are deprecated and should not be used. All dependencies are now managed in `pyproject.toml`, which is the canonical source. These files will be removed in a future release.
-
 If you need to install dependencies for development or documentation:
 
 - Use `pip install ".[dev]"` instead of `pip install -r requirements-dev.txt`
 - Use `pip install ".[docs]"` instead of `pip install -r docs/requirements.txt`
 - Core dependencies are installed automatically with `pip install .` or `pip install hedvis`
 
-## Quick Start
+## Quick start
 
-### Simple Word Cloud
+### Simple word cloud
 
 ```python
 from hedvis import create_wordcloud
@@ -113,7 +107,7 @@ wc = create_wordcloud(word_freq, width=800, height=600)
 wc.to_file("wordcloud.png")
 ```
 
-### Using the New API
+### Using the hedvis API
 
 ```python
 from hedvis import HedTagVisualizer, WordCloudConfig, VisualizationConfig
@@ -163,23 +157,15 @@ results = visualizer.visualize_from_tabular(
 results['word_cloud']['wordcloud_object'].to_file("tags.png")
 ```
 
-## Documentation
-
-Full documentation is available at [Read the Docs](https://hed-vis.readthedocs.io/):
-
-- [Introduction](https://hed-vis.readthedocs.io/en/latest/introduction.html)
-- [User Guide](https://hed-vis.readthedocs.io/en/latest/user_guide.html)
-- [API Reference](https://hed-vis.readthedocs.io/en/latest/api/index.html)
-
 ## Requirements
 
 - Python 3.10+
-- hedtools (>=0.8.1)
+- hedtools (>=0.9.0)
 - wordcloud (>=1.9.4)
 - matplotlib (>=3.9.0)
 - Pillow (>=11.2.1)
 - numpy (>=2.0.2)
-- pandas (>=2.2.3)
+- pandas (>=2.2.3\<3.0.0)
 
 All dependencies are managed in `pyproject.toml` and installed automatically with `pip install hedvis`.
 
@@ -187,10 +173,10 @@ For the complete list of dependencies with exact versions, see the `dependencies
 
 ## Related Projects
 
-- **[hedtools](https://github.com/hed-standard/hed-python)** - Core HED tools for validation and analysis
-- **[hed-schemas](https://github.com/hed-standard/hed-schemas)** - Official HED schemas
-- **[hed-specification](https://github.com/hed-standard/hed-specification)** - HED specification
-- **[HED Resources](https://www.hed-resources.org)** - User documentation and tutorials
+- [hedtools](https://github.com/hed-standard/hed-python) - Core HED tools for validation and analysis
+- [hed-schemas](https://github.com/hed-standard/hed-schemas) - Official HED schemas
+- [hed-specification](https://github.com/hed-standard/hed-specification) - HED specification
+- [table-remodeler](https://github.com/hed-standard/table-remodeler) - Sister project with table manipulation tools
 
 ## Contributing
 

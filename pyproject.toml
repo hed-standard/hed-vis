@@ -36,15 +36,10 @@ classifiers = [
 requires-python = ">=3.10"
 
 dependencies = [
-    "hedtools>=0.8.1",
-    "jsonschema>=4.23.0",
+    "hedtools>=0.9.0",
     "matplotlib>=3.9.0",
-    "numpy>=2.0.2",
-    "openpyxl>=3.1.5",
-    "pandas>=2.2.3",
+    "pandas>=2.2.3,<3.0.0",
     "pillow>=11.2.1",
-    "portalocker>=3.1.1",
-    "semantic-version>=2.10.0",
     "wordcloud>=1.9.4",
 ]
 

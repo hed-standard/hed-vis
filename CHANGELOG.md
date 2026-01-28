@@ -4,15 +4,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.1] - 2026-01-27
+## [0.1.1] - 2026-01-28
 
-Corrected the README.md file and updated the badges.
+### Minor cosmetic changes
+
+- Corrected the `README.md` file and updated the badges.
+- Removed unused dependencies
+- Added explicit requirement pandas\<3.0.0.
 
 ## [0.1.0] - 2026-01-26
 
 ### Added
 
-#### Core Features
+#### Core features
 
 - **HedTagVisualizer API**: Modern configuration-based interface for generating visualizations from HED-annotated data
 
@@ -24,13 +28,13 @@ Corrected the README.md file and updated the badges.
   - Tag template support for organizing tags by categories
   - Context-aware tag processing with options for including context and replacing definitions
 
-- **Legacy Word Cloud API**: Simple functional interface for quick word cloud generation
+- **Legacy word cloud API**: Simple functional interface for quick word cloud generation
 
   - `create_wordcloud()`: Create word clouds from frequency dictionaries
   - `word_cloud_to_svg()`: Export word clouds to SVG format
   - Backward compatibility support for users familiar with simpler APIs
 
-- **Word Cloud Customization**:
+- **Word cloud customization**:
 
   - Configurable dimensions (width and height)
   - Custom background colors with transparency support
@@ -40,13 +44,13 @@ Corrected the README.md file and updated the badges.
   - Font customization with validation
   - Smart automatic sizing with minimum size constraints
 
-- **Sequence Map Utility**: Class for mapping between event sequences and display text
+- **Sequence map utility**: Class for mapping between event sequences and display text
 
   - Convert between compact and verbose event representations
   - Tag template-based categorization
   - Count tracking for frequency analysis
 
-#### Command-Line Tools
+#### Command-line tools
 
 - **visualize_hed_tags.py**: Comprehensive CLI script for batch processing
   - Process entire directory trees of HED-annotated TSV files
@@ -60,7 +64,7 @@ Corrected the README.md file and updated the badges.
   - Progress tracking for large datasets
   - Support for BIDS-style dataset organization
 
-#### Testing Infrastructure
+#### Testing infrastructure
 
 - Comprehensive test suite with 100+ test cases
   - `test_tag_visualizer.py`: Tests for HedTagVisualizer class and core visualization logic
@@ -74,7 +78,7 @@ Corrected the README.md file and updated the badges.
 
 #### Documentation
 
-- **Complete Sphinx Documentation**:
+- **Complete Sphinx documentation**:
 
   - Overview and introduction to hedvis
   - Comprehensive user guide with multiple examples
@@ -114,9 +118,9 @@ Corrected the README.md file and updated the badges.
   - Legacy API usage
   - SVG generation
 
-#### Development Infrastructure
+#### Development infrastructure
 
-- **Package Configuration**:
+- **Package configuration**:
 
   - Modern pyproject.toml-based packaging
   - Support for Python 3.10 through 3.14
@@ -126,7 +130,7 @@ Corrected the README.md file and updated the badges.
   - Black code formatter configuration
   - Ruff linter configuration
 
-- **Continuous Integration**:
+- **Continuous integration**:
 
   - Multi-platform testing (Linux, Windows, macOS)
   - Python version matrix testing (3.10, 3.11, 3.12, 3.13, 3.14)
@@ -141,7 +145,7 @@ Corrected the README.md file and updated the badges.
   - Test installer verification
   - Dependabot for automated dependency updates
 
-- **Code Quality Tools**:
+- **Code quality tools**:
 
   - Black formatter configuration
   - Ruff linter with custom rules
@@ -149,7 +153,7 @@ Corrected the README.md file and updated the badges.
   - Pre-commit hook support
   - Coverage configuration with exclusions
 
-- **Git Configuration**:
+- **Git configuration**:
 
   - Comprehensive .gitignore for Python projects
   - .gitattributes for consistent line endings
