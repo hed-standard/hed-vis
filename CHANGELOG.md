@@ -8,9 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Minor cosmetic changes
 
-- Corrected the `README.md` file and updated the badges.
+- Corrected the `README.md` file and updated the badges
 - Removed unused dependencies
-- Added explicit requirement pandas\<3.0.0.
+- Added explicit requirement `pandas (>=2.2.3, <3.0.0)`
 
 ## [0.1.0] - 2026-01-26
 

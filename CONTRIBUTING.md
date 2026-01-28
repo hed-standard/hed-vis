@@ -2,97 +2,41 @@
 
 Thank you for your interest in contributing to HED visualization! This document provides guidelines and instructions for contributing to the project.
 
-## Table of Contents
+## Table of contents
 
-- [Code of Conduct](#code-of-conduct)
-- [How Can I Contribute?](#how-can-i-contribute)
-- [Development Setup](#development-setup)
-- [Coding Standards](#coding-standards)
-- [Testing Guidelines](#testing-guidelines)
-- [Pull Request Process](#pull-request-process)
-- [Reporting Bugs](#reporting-bugs)
-- [Suggesting Enhancements](#suggesting-enhancements)
+- [Code of conduct](#code-of-conduct)
+- [How can I contribute?](#how-can-i-contribute)
+- [Coding standards](#coding-standards)
+- [Testing guidelines](#testing-guidelines)
+- [Pull request process](#pull-request-process)
+- [Reporting bugs](#reporting-bugs)
+- [Suggesting enhancements](#suggesting-enhancements)
 
-## Code of Conduct
+## Code of conduct
 
 This project adheres to a code of conduct that we expect all contributors to follow. Please be respectful and constructive in all interactions.
 
-## How Can I Contribute?
+## How can I contribute?
 
-### Types of Contributions
+### Types of contributions
 
-- **Bug Reports:** Help us identify and fix issues
-- **Feature Requests:** Suggest new functionality
-- **Code Contributions:** Submit bug fixes or new features
+- **Bug reports:** Help us identify and fix issues
+- **Feature requests:** Suggest new functionality
+- **Code contributions:** Submit bug fixes or new features
 - **Documentation:** Improve guides, examples, or API docs
 - **Testing:** Add test coverage or report test failures
 - **Examples:** Share use cases and example code
 
-## Development Setup
+## Coding standards
 
-### Prerequisites
-
-- Python 3.10 or higher
-- Git
-- pip (Python package manager)
-
-### Setting Up Your Development Environment
-
-1. **Fork and clone the repository:**
-
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/hed-vis.git
-   cd hed-vis
-   ```
-
-2. **Create a virtual environment (recommended):**
-
-   ```bash
-   python -m venv .venv
-   .venv\Scripts\activate  # On Windows PowerShell
-   source .venv/bin/activate  # On Unix/MacOS
-   ```
-
-3. **Install in development mode:**
-
-   All dependencies are managed in `pyproject.toml`. Install the package with development tools:
-
-   ```bash
-   pip install -e ".[dev]"
-   ```
-
-   This installs:
-
-   - The hedvis package in editable mode
-   - All required dependencies (hedtools, wordcloud, matplotlib, etc.)
-   - Development tools (black, ruff, codespell, mdformat)
-   - Testing tools (coverage)
-
-   To install additional optional dependencies:
-
-   ```bash
-   # Documentation tools
-   pip install -e ".[docs]"
-   ```
-
-   **Note:** Do not use legacy requirements files (`requirements.txt`, `requirements-dev.txt`). All dependencies are defined in `pyproject.toml`.
-
-4. **Run tests to verify setup:**
-
-   ```bash
-   python -m unittest discover tests
-   ```
-
-## Coding Standards
-
-### Python Style Guide
+### Python style guide
 
 - Follow [PEP 8](https://pep8.org/) style guidelines
 - Maximum line length: 120 characters
 - Use descriptive variable and function names
 - Add docstrings to all public classes and functions
 
-### Code Quality Tools
+### Code quality tools
 
 We use several tools to maintain code quality:
 
@@ -130,7 +74,7 @@ We use several tools to maintain code quality:
   codespell
   ```
 
-### Documentation Style
+### Documentation style
 
 - Use Google-style docstrings for all public APIs
 - Include type hints where appropriate
@@ -158,15 +102,15 @@ def validate_hed_string(hed_string, schema)->list[dict]:
     pass
 ```
 
-## Testing Guidelines
+## Testing guidelines
 
-### Test Structure
+### Test structure
 
 - Place tests in the `tests/` directory, mirroring the `hed/` structure
 - Name test files with `test_` prefix
 - Use descriptive test method names
 
-### Writing Tests
+### Writing tests
 
 - Each test should be independent and isolated
 - Use unittest framework (the project standard)
@@ -198,7 +142,7 @@ if __name__ == '__main__':
     unittest.main()
 ```
 
-### Running Tests
+### Running tests
 
 Run all tests:
 
@@ -218,42 +162,85 @@ Run specific test case:
 python -m unittest tests.models.test_hed_string.TestHedString.test_constructor
 ```
 
-## Pull Request Process
+## Pull request process
 
-### Before Submitting
+### Initial setup (one-time only)
 
-1. **Update your branch:**
+**Important:** You cannot push directly to `hed-standard/hed-vis`. All contributions must come through pull requests from your personal fork.
 
-   ```bash
-   git fetch origin
-   git rebase origin/main
-   ```
+1. **Fork the repository on GitHub:**
 
-2. **Run all tests:**
+   - Go to https://github.com/hed-standard/hed-vis
+   - Click the "Fork" button in the top-right corner
+   - This creates a copy at `https://github.com/YOUR_USERNAME/hed-vis`
 
-   ```bash
-   python -m unittest discover tests
-   ```
-
-3. **Check code style:**
+2. **Clone your fork to your local machine:**
 
    ```bash
-   ruff check hed/ tests/
+   git clone https://github.com/YOUR_USERNAME/hed-vis.git
+   cd hed-vis
    ```
 
-4. **Update documentation** if you've added/changed functionality
+   This creates a local copy with `origin` pointing to your fork.
 
-### Submitting a Pull Request
+3. **Add the upstream repository:**
 
-1. **Create a feature branch:**
+   ```bash
+   git remote add upstream https://github.com/hed-standard/hed-vis.git
+   ```
+
+   Now you have two remotes:
+
+   - `origin`: your fork (where you push your changes)
+   - `upstream`: the official repo (where you pull updates from)
+
+   Verify with:
+
+   ```bash
+   git remote -v
+   ```
+
+### Making a contribution
+
+Follow these steps each time you want to contribute:
+
+1. **Sync your fork with the latest upstream changes:**
+
+   ```bash
+   # Switch to your main branch
+   git checkout main
+
+   # Fetch the latest changes from upstream
+   git fetch upstream
+
+   # Merge upstream's main into your local main
+   git merge upstream/main
+
+   # Push the updates to your fork on GitHub
+   git push origin main
+   ```
+
+2. **Create a feature branch:**
 
    ```bash
    git checkout -b feature/your-feature-name
    ```
 
-2. **Make your changes** with clear, focused commits
+   Always create your feature branch from an up-to-date main branch.
 
-3. **Write descriptive commit messages:**
+3. **Make your changes** with clear, focused commits
+
+4. **Run tests and checks:**
+
+   ```bash
+   # Run all tests
+   python -m unittest discover tests
+
+   # Check code style
+   ruff check hedvis/ tests/
+   ```
+
+5. **Write descriptive commit messages:**
 
    ```
    Add validation for temporal extent
@@ -263,34 +250,74 @@ python -m unittest tests.models.test_hed_string.TestHedString.test_constructor
    - Update documentation with temporal examples
    ```
 
-4. **Push to your fork:**
+6. **Push your feature branch to your fork:**
 
    ```bash
    git push origin feature/your-feature-name
    ```
 
-5. **Open a Pull Request** on GitHub:
+   This pushes to `YOUR_USERNAME/hed-vis`, not to `hed-standard/hed-vis`.
 
-   - Target the `main` branch
+7. **Create a pull request on GitHub:**
+
+   - Go to https://github.com/YOUR_USERNAME/hed-vis
+   - GitHub will show a banner suggesting to create a PR for your recently pushed branch
+   - Click "Compare & pull request"
+   - Or click "Pull requests" → "New pull request" → "compare across forks"
+   - Ensure:
+     - Base repository: `hed-standard/hed-vis`
+     - Base branch: `main`
+     - Head repository: `YOUR_USERNAME/hed-vis`
+     - Compare branch: `feature/your-feature-name`
    - Fill out the PR template completely
    - Link related issues
    - Add meaningful description of changes
+   - Click "Create pull request"
 
-### PR Review Process
+### After submitting your PR
 
 - A maintainer will review your PR within a few days
-- Address any requested changes
+- If changes are requested:
+  - Make the changes locally on your feature branch
+  - Commit and push to the same branch: `git push origin feature/your-feature-name`
+  - The PR will automatically update with your new commits
 - Once approved, a maintainer will merge your PR
+- After merge:
+  - Delete your feature branch: `git branch -d feature/your-feature-name`
+  - Sync your main again (repeat step 1 above)
 
-## Reporting Bugs
+### Keeping your PR up to date
 
-### Before Submitting a Bug Report
+If upstream's main branch changes while your PR is open:
 
-- Check the [existing issues](https://github.com/hed-standard/hed-python/issues)
+```bash
+# Switch to your main branch
+git checkout main
+
+# Sync with upstream
+git fetch upstream
+git merge upstream/main
+git push origin main
+
+# Switch back to your feature branch
+git checkout feature/your-feature-name
+
+# Merge the updated main into your feature branch
+git merge main
+
+# Push the updates
+git push origin feature/your-feature-name
+```
+
+## Reporting bugs
+
+### Before submitting a bug report
+
+- Check the [existing issues](https://github.com/hed-standard/hed-vis/issues)
 - Update to the latest version
 - Verify the bug is reproducible
 
-### How to Submit a Bug Report
+### How to submit a bug report
 
 Create an issue with:
 
@@ -335,9 +362,9 @@ KeyError: 'Event'
 \```
 ````
 
-## Suggesting Enhancements
+## Suggesting enhancements
 
-### How to Suggest an Enhancement
+### How to suggest an enhancement
 
 Create an issue with:
 
@@ -349,8 +376,10 @@ Create an issue with:
 
 ## Questions?
 
-- **Documentation:** [https://www.hedtags.org/hed-python](https://www.hedtags.org/hed-python)
-- **Issues:** [GitHub Issues](https://github.com/hed-standard/hed-python/issues)
-- **Email:** Kay.Robbins@utsa.edu
+- **Repo docs:** [https://www.hedtags.org/hed-vis](https://www.hedtags.org/hed-vis)
+- **HED docs:** [https://www.hedtags.org/hed-resources](https://www.hedtags.org/hed-resources)
+- **Issues:** [GitHub Issues](https://github.com/hed-standard/hed-vis/issues)
+- **Questions or ideas:** [HED organization discussions](https://github.com/orgs/hed-standard/discussions)
+- **Email:** [hed.maintainers@gmail.com](mailTo:hed.maintainers@gmail.com)
 
-Thank you for contributing to HEDTools! 🎉
+Thank you for contributing to HED visualization tools!

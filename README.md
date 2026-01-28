@@ -2,7 +2,7 @@
 
 # HED visualization
 
-**hedvis** provides word cloud generation and visual summaries for HED-annotated data \<dataset; HED-annotated, making it easy to explore and present the semantic content of your experimental datasets.
+**hedvis** provides word cloud generation and visual summaries for HED-annotated data, making it easy to explore and present the semantic content of your experimental datasets.
 
 ## Features
 
@@ -11,7 +11,7 @@
 - **Shaped Clouds** - Support for mask images to create custom-shaped word clouds
 - **Multiple Formats** - Export to PNG and SVG formats
 - **hedtools Integration** - Seamless integration with the HED Python tools ecosystem
-- **Two APIs** - Modern configuration-based API VisualizationConfig and simple legacy API for quick tasks
+- **Two APIs** - A modern configuration-based API (`VisualizationConfig`) and a simple legacy API for quick tasks
 
 ## Installation
 
@@ -157,21 +157,69 @@ results = visualizer.visualize_from_tabular(
 results['word_cloud']['wordcloud_object'].to_file("tags.png")
 ```
 
-## Requirements
-
-- Python 3.10+
-- hedtools (>=0.9.0)
-- wordcloud (>=1.9.4)
-- matplotlib (>=3.9.0)
-- Pillow (>=11.2.1)
-- numpy (>=2.0.2)
-- pandas (>=2.2.3\<3.0.0)
-
 All dependencies are managed in `pyproject.toml` and installed automatically with `pip install hedvis`.
 
 For the complete list of dependencies with exact versions, see the `dependencies` section in [pyproject.toml](pyproject.toml).
 
-## Related Projects
+## Development setup
+
+### Prerequisites
+
+- Python 3.10 or higher
+- Git
+- pip (Python package manager)
+
+### Setting up your development environment
+
+1. **Fork and clone the repository:**
+
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/hed-vis.git
+   cd hed-vis
+   ```
+
+2. **Create a virtual environment (recommended):**
+
+   ```bash
+   python -m venv .venv
+   .venv\Scripts\activate  # On Windows PowerShell
+   source .venv/bin/activate  # On Unix/MacOS
+   ```
+
+3. **Install in development mode:**
+
+   All dependencies are managed in `pyproject.toml`. Install the package with development tools:
+
+   ```bash
+   pip install -e ".[dev]"
+   ```
+
+   This installs:
+
+   - The hedvis package in editable mode
+   - All required dependencies (hedtools, wordcloud, matplotlib, etc.)
+   - Development tools (black, ruff, codespell, mdformat)
+   - Testing tools (coverage)
+
+   To install additional optional dependencies:
+
+   ```bash
+   # Documentation tools
+   pip install -e ".[docs]"
+
+   # Both dev and docs
+   pip install -e ".[dev,docs]"
+   ```
+
+   **Note:** Do not use legacy requirements files (`requirements.txt`, `requirements-dev.txt`). All dependencies are defined in `pyproject.toml`.
+
+4. **Run tests to verify setup:**
+
+   ```bash
+   python -m unittest discover tests
+   ```
+
+## Related projects
 
 - [hedtools](https://github.com/hed-standard/hed-python) - Core HED tools for validation and analysis
 - [hed-schemas](https://github.com/hed-standard/hed-schemas) - Official HED schemas
