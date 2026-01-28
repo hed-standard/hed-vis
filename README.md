@@ -1,6 +1,5 @@
 ![PyPI - Status](https://img.shields.io/pypi/v/hedvis) ![Python3](https://img.shields.io/badge/python-%3E=3.10-yellow.svg) [![Maintainability](https://qlty.sh/gh/hed-standard/projects/hed-vis/maintainability.svg)](https://qlty.sh/gh/hed-standard/projects/hed-vis) [![Code Coverage](https://qlty.sh/gh/hed-standard/projects/hed-vis/coverage.svg)](https://qlty.sh/gh/hed-standard/projects/hed-vis) [![Docs](https://img.shields.io/badge/docs-hed--vis-blue.svg)](https://www.hedtags.org/hed-vis)
 
-
 # HED visualization
 
 **hedvis** provides word cloud generation and visual summaries for HED-annotated data, making it easy to explore and present the semantic content of your experimental datasets.
@@ -233,10 +232,11 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 
 ## Support
 
-- [Documentation](https://www.hedtags.org/hed-vis)
-- [GitHub issues](https://github.com/hed-standard/hed-vis/issues)
-- [Ideas or questions](https://github.com/orgs/hed-standard/discussions)
-- [HED Homepage](https://www.hedtags.org)
+- HED homepage: [https://www.hedtags.org](https://www.hedtags.org)
+- Repo docs: [https://www.hedtags.org/hed-vis](https://www.hedtags.org/hed-vis)
+- GitHub issues: [https://github.com/hed-standard/hed-vis/issues](https://github.com/hed-standard/hed-vis/issues)
+- Ideas or questions: [https://github.com/orgs/hed-standard/discussions](https://github.com/orgs/hed-standard/discussions)
+- HED Homepage: [https://www.hedtags.org](https://www.hedtags.org)
 - Contact: [hed-maintainers@gmail.com](mailto:hed-maintainers@gmail.com)
 
 ## License
