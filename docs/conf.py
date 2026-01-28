@@ -17,7 +17,7 @@ copyright = "2024-2026, HED Standard"
 author = "HED Standard"
 
 # The full version, including alpha/beta/rc tags
-release = "0.1.0"
+release = "0.1.1"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
