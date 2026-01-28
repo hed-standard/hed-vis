@@ -13,7 +13,7 @@ authors = [
     { name = "Kay Robbins", email = "Kay.Robbins@utsa.edu" },
 ]
 maintainers = [
-    { name = "Kay Robbins", email = "Kay.Robbins@utsa.edu" },
+    { name = "HED Maintainers", email = "hed.maintainers@gmail.com" },
 ]
 license = {text = "MIT"}
 keywords = ["HED", "hierarchical event descriptors", "validation", "neuroscience", "BIDS", "events", "metadata", "annotation"]

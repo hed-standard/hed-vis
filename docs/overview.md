@@ -218,5 +218,5 @@ If you encounter bugs or have feature requests:
 
 - **hedvis issues**: [open an issue](https://github.com/hed-standard/hed-vis/issues) in the hed-vis repository
 - **hedtools issues**: [open an issue](https://github.com/hed-standard/hed-python/issues) in the hed-python repository
-- **Questions or ideas**: [HED organization discussions][HED organization discussions](https://github.com/orgs/hed-standard/discussions)
+- **Questions or ideas**: [HED organization discussions](https://github.com/orgs/hed-standard/discussions)
 - **Contact**: [hed.maintainers@gmail.com](mailto:hed.maintainers@gmail.com)

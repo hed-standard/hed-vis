@@ -1,6 +1,6 @@
 """Visualization tools for HED."""
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 # New API - recommended for all new code
 from .core import HedTagVisualizer, VisualizationConfig, WordCloudConfig
