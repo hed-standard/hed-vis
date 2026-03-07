@@ -90,7 +90,12 @@ def get_parser():
         "Use '*' to match all TSV files regardless of suffix. Default: events",
     )
     parser.add_argument(
-        "-x", "--exclude-dirs", nargs="*", default=[], dest="exclude_dirs", help="Directory names to exclude from file search."
+        "-x",
+        "--exclude-dirs",
+        nargs="*",
+        default=[],
+        dest="exclude_dirs",
+        help="Directory names to exclude from file search.",
     )
     parser.add_argument(
         "-fl",
@@ -124,7 +129,10 @@ def get_parser():
         help="Include contextual tags (tags that unfold over time) in counts. Default: True",
     )
     parser.add_argument(
-        "--no-include-context", action="store_false", dest="include_context", help="Do not include contextual tags in counts."
+        "--no-include-context",
+        action="store_false",
+        dest="include_context",
+        help="Do not include contextual tags in counts.",
     )
     parser.add_argument(
         "--replace-defs",
@@ -198,7 +206,10 @@ def get_parser():
     parser.add_argument("--contour-color", default="black", help="Color for contour line. Default: black")
     parser.add_argument("--min-font-size", type=int, default=8, help="Minimum font size in points. Default: 8")
     parser.add_argument(
-        "--max-font-size", type=int, default=None, help="Maximum font size in points. If not specified, auto-calculated."
+        "--max-font-size",
+        type=int,
+        default=None,
+        help="Maximum font size in points. If not specified, auto-calculated.",
     )
 
     # Logging arguments
@@ -463,7 +474,7 @@ def process_files(args, logger):
             all_tag_counts.append(tag_counts)
             successful_files += 1
             logger.debug(
-                f"  Successfully processed: {len(tabular.dataframe)} events, " f"{len(tag_counts.tag_dict)} unique tags"
+                f"  Successfully processed: {len(tabular.dataframe)} events, {len(tag_counts.tag_dict)} unique tags"
             )
 
         except Exception as e:
