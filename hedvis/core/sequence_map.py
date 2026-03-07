@@ -109,7 +109,8 @@ class SequenceMap:
         if sort:
             df = df.sort_values(by="Counts", ascending=False)
         edge_list = [
-            f"{self.edge_to_str(row['Key'])} [label={str(self.edge_counts[row['Key']])}];" for index, row in df.iterrows()
+            f"{self.edge_to_str(row['Key'])} [label={str(self.edge_counts[row['Key']])}];"
+            for index, row in df.iterrows()
         ]
         return edge_list
 

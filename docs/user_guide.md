@@ -95,19 +95,6 @@ results = visualizer.visualize_from_counts(tag_counts)
 results['word_cloud']['wordcloud_object'].to_file('output.png')
 ```
 
-## Table of contents
-
-01. [Getting started](#getting-started)
-02. [Basic word clouds](#basic-word-clouds)
-03. [Configuration-based API](#configuration-based-api)
-04. [Working with HED data](#working-with-hed-data)
-05. [Advanced customization](#advanced-customization)
-06. [Output formats](#output-formats)
-07. [Best practices](#best-practices)
-08. [Troubleshooting](#troubleshooting)
-09. [Related projects](#related-projects)
-10. [Finding help](#finding-help)
-
 ## Getting started with hedvis
 
 ```{index} getting started

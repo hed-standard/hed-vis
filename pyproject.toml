@@ -46,11 +46,11 @@ dependencies = [
 
 [project.urls]
 "Homepage" = "https://www.hedtags.org/"
-"Documentation" = "https://www.hedtags.org/hed-python/"
-"Repository" = "https://github.com/hed-standard/hed-vis/"
+"Documentation" = "https://www.hedtags.org/hed-python"
+"Repository" = "https://github.com/hed-standard/hed-vis"
 "Bug Tracker" = "https://github.com/hed-standard/hed-vis/issues"
 "Changelog" = "https://github.com/hed-standard/hed-vis/blob/main/CHANGELOG.md"
-"HED Resources" = "https://www.hedtags.org/hed-resources/"
+"HED Resources" = "https://www.hedtags.org/hed-resources"
 
 [project.optional-dependencies]
 dev = [

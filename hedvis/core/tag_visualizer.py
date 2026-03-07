@@ -35,7 +35,10 @@ class HedTagVisualizer:
         self.config = config
 
     def visualize_from_counts(
-        self, tag_counts: HedTagCounts, tag_template: Optional[Dict[str, List[str]]] = None, output_basename: str = "hed_tags"
+        self,
+        tag_counts: HedTagCounts,
+        tag_template: Optional[Dict[str, List[str]]] = None,
+        output_basename: str = "hed_tags",
     ) -> Dict[str, Any]:
         """Generate visualizations from pre-computed tag counts.
 
@@ -86,7 +89,11 @@ class HedTagVisualizer:
         """
         # Compute tag counts
         tag_counts = self._compute_tag_counts(
-            tabular_input, schema, include_context=include_context, replace_defs=replace_defs, remove_types=remove_types or []
+            tabular_input,
+            schema,
+            include_context=include_context,
+            replace_defs=replace_defs,
+            remove_types=remove_types or [],
         )
 
         # Generate visualizations

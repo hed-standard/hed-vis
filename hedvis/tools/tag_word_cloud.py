@@ -52,7 +52,9 @@ def create_wordcloud(word_dict, mask_path=None, background_color=None, width=400
     elif kwargs["font_path"] and not kwargs["font_path"].lower().endswith((".ttf", ".otf", ".ttc")):
         raise HedFileError("InvalidFontPath", f"Font {kwargs['font_path']} not valid on this system", "")
 
-    wc = WordCloud(background_color=background_color, mask=mask_image, width=width, height=height, mode="RGBA", **kwargs)
+    wc = WordCloud(
+        background_color=background_color, mask=mask_image, width=width, height=height, mode="RGBA", **kwargs
+    )
 
     wc.generate_from_frequencies(word_dict)
 
@@ -112,7 +114,11 @@ def load_and_resize_mask(mask_path, width=None, height=None):
         # Treat transparency (alpha < 128) or white (R>127, G>127, B>127) as white, else black
         mask_image_array = np.where(
             (mask_image_array[:, :, 3] < 128)
-            | ((mask_image_array[:, :, 0] > 127) & (mask_image_array[:, :, 1] > 127) & (mask_image_array[:, :, 2] > 127)),
+            | (
+                (mask_image_array[:, :, 0] > 127)
+                & (mask_image_array[:, :, 1] > 127)
+                & (mask_image_array[:, :, 2] > 127)
+            ),
             255,
             0,
         )
