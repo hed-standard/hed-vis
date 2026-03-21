@@ -138,7 +138,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - Automated code quality checks:
     - Black code formatter validation
     - Ruff linting
-    - Codespell for spelling errors
+    - Typos for spelling errors
     - Link checker for documentation
     - Markdown formatting validation
   - Documentation building and deployment
@@ -149,7 +149,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
   - Black formatter configuration
   - Ruff linter with custom rules
-  - Codespell with custom dictionary
+  - Typos with custom dictionary
   - Pre-commit hook support
   - Coverage configuration with exclusions
 
