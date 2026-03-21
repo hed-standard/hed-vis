@@ -198,7 +198,7 @@ For the complete list of dependencies with exact versions, see the `dependencies
 
    - The hedvis package in editable mode
    - All required dependencies (hedtools, wordcloud, matplotlib, etc.)
-   - Development tools (black, ruff, codespell, mdformat)
+   - Development tools (ruff, typos, mdformat)
    - Testing tools (coverage)
 
    To install additional optional dependencies:

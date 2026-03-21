@@ -88,7 +88,7 @@ This ensures code changes are immediately reflected without reinstalling.
 ### Key files
 
 - Entry point: `hedvis/__init__.py` — exports public API (`HedTagVisualizer`, `VisualizationConfig`, `WordCloudConfig`, `create_wordcloud`, `word_cloud_to_svg`)
-- Configuration: `pyproject.toml` — project metadata, dependencies, and tool configs (ruff, codespell)
+- Configuration: `pyproject.toml` — project metadata, dependencies, and tool configs (ruff)
 - Code quality: `qlty.toml` — complexity and maintainability thresholds
 - CI workflows: `.github/workflows/` — automated testing and quality checks
 
@@ -120,7 +120,7 @@ ruff check .
 ruff format --check .
 
 # Spell checking (configured in pyproject.toml)
-codespell .
+typos
 
 # Markdown formatting (docs and root .md files)
 mdformat --check --wrap no --number docs/*.md
@@ -137,7 +137,7 @@ GitHub Actions in `.github/workflows/`:
 - **`ci_windows.yaml`**: Windows tests on Python 3.10–3.12 (main/PRs to main only)
 - **`ci_cov.yaml`**: Coverage reporting
 - **`ruff.yaml`**: Ruff linter and formatter check
-- **`codespell.yaml`**: Spell checking
+- **`typos.yaml`**: Spell checking
 - **`mdformat.yaml`**: Markdown formatting check
 - **`links.yaml`**: Dead link checking (lychee)
 - **`docs.yml`**: Documentation build
@@ -149,7 +149,7 @@ Before pushing, run these to replicate CI locally:
 1. `python -m unittest discover tests -v` — all tests pass
 2. `ruff check .` — no lint errors
 3. `ruff format --check .` — code is formatted
-4. `codespell .` — no spelling errors
+4. `typos` — no spelling errors
 
 ## Integration with hedtools
 
