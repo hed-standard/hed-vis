@@ -105,7 +105,11 @@ covert = "covert"
 hed = "hed"
 recuse = "recuse"
 disjointness = "disjointness"
-  
+
+[tool.typos.default.extend-identifiers]
+# Misspelling in upstream wordcloud library's private API
+_get_bolean_mask = "_get_bolean_mask"
+
 [tool.ruff]
 # Target Python 3.10+
 target-version = "py310"
