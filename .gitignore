@@ -134,6 +134,3 @@ Desktop.ini
 # Project specific
 .status/
 status/
-
-# GitHub Copilot instructions (project-specific)
-.github/copilot-instructions.md

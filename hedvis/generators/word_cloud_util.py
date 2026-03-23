@@ -13,7 +13,7 @@ def generate_contour_svg(wc, width, height):
     """Generate an SVG contour mask based on a word cloud object and dimensions.
 
     Parameters:
-        wc (WordCloud): The word cloud object.
+        wc (wcloud.WordCloud): The word cloud object.
         width (int): SVG image width in pixels.
         height (int): SVG image height in pixels.
 
@@ -30,7 +30,7 @@ def _get_contour_mask(wc, width, height):
     """Slightly tweaked copy of internal WorldCloud function to allow transparency for mask.
 
     Parameters:
-        wc (WordCloud): Representation of the word cloud.
+        wc (wcloud.WordCloud): Representation of the word cloud.
         width (int): Width of the generated mask.
         height (int): Height of generated mask.
 
@@ -59,7 +59,7 @@ def _draw_contour(wc, img: Image):
     """Slightly tweaked copy of internal WorldCloud function to allow transparency.
 
     Parameters:
-        wc (WordCloud): Wordcloud object.
+        wc (wcloud.WordCloud): Wordcloud object.
         img (Image):  Image to work with.
 
     Returns:
