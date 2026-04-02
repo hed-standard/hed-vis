@@ -173,7 +173,6 @@ max-complexity = 10
 known-first-party = ["hedvis"]
 
 [tool.ruff.format]
-# Black-compatible formatting settings
 quote-style = "double"
 indent-style = "space"
 skip-magic-trailing-comma = false

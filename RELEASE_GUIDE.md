@@ -1,4 +1,4 @@
-# HED-Vis Release Guide
+# HED-Vis release guide
 
 This document provides step-by-step instructions for releasing a new version of hedvis to PyPI.
 
@@ -34,11 +34,11 @@ Your setup should look like:
 - `origin` → your fork (e.g., `yourusername/hed-vis`)
 - `upstream` → `hed-standard/hed-vis`
 
-## Release Checklist
+## Release checklist
 
-### 1. Pre-Release Preparation
+### 1. Pre-release preparation
 
-#### 1.1 Ensure Working Tree is Clean
+#### 1.1 Ensure working tree is clean
 
 **Windows (PowerShell):**
 
@@ -81,25 +81,21 @@ Add a new entry at the top of `CHANGELOG.md` with:
 
 ```markdown
 Release 0.1.1 January 26, 2026
-- Applied Black code formatter to entire codebase for consistent code style
-- Added Black to development dependencies and CI workflow
+- Replaced codespell with typos for spell checking
 - Enhanced CONTRIBUTING.md with code formatting guidelines
-- Updated README.md with Black usage instructions
+- Updated README.md with usage instructions
 ```
 
-#### 1.3 Run Code Quality Checks
+#### 1.3 Run code quality checks
 
 Before releasing, ensure all code quality checks pass:
 
 **All Platforms:**
 
 ```bash
-# Run code formatter check
-black --check .
-# On Windows, use: black --workers 1 --check .
-
-# Run linter (if applicable)
-# ruff check hedvis/ tests/
+# Run linter and formatter check
+ruff check .
+ruff format --check .
 
 # Run spell checker
 typos
@@ -110,7 +106,7 @@ python -m unittest discover tests -v
 
 Fix any issues before proceeding.
 
-#### 1.4 Commit CHANGELOG Updates
+#### 1.4 Commit CHANGELOG updates
 
 **All Platforms:**
 
@@ -119,7 +115,7 @@ git add CHANGELOG.md
 git commit -m "Update CHANGELOG for version 0.1.1"
 ```
 
-#### 1.5 Push CHANGELOG to Your Fork and Create Pull Request
+#### 1.5 Push CHANGELOG to your fork and create pull request
 
 Push your changes to your fork and create a pull request to upstream:
 
@@ -144,15 +140,15 @@ git push origin main
 
 **Important:** Ensure the CHANGELOG updates are merged into the upstream `main` branch (hed-standard/hed-vis) before proceeding.
 
-### 2. Create GitHub Release
+### 2. Create GitHub release
 
 The project uses version management via pyproject.toml. We'll create the release tag and release directly on GitHub.
 
-#### 2.1 Navigate to Create Release
+#### 2.1 Navigate to create release
 
 Go to: https://github.com/hed-standard/hed-vis/releases/new
 
-#### 2.2 Create Release Tag and Release
+#### 2.2 Create release tag and release
 
 Fill in the release form:
 
@@ -193,7 +189,7 @@ See [CHANGELOG.md](https://github.com/hed-standard/hed-vis/blob/main/CHANGELOG.m
 
 5. Click **Publish release**
 
-#### 2.3 Verify GitHub Release
+#### 2.3 Verify GitHub release
 
 Verify the release on GitHub:
 
@@ -202,11 +198,11 @@ Verify the release on GitHub:
 - [ ] Release notes display correctly
 - [ ] Target is set to main branch
 
-### 3. Verify Zenodo Release (if configured)
+### 3. Verify Zenodo release (if configured)
 
 If Zenodo integration is enabled, Zenodo automatically creates a DOI and archives the release when a GitHub release is published.
 
-#### 3.1 Check Zenodo Release
+#### 3.1 Check Zenodo release
 
 **Wait a few minutes** after creating the GitHub release for Zenodo to process it.
 
@@ -217,11 +213,11 @@ If Zenodo integration is enabled, Zenodo automatically creates a DOI and archive
 
 **Note:** If the Zenodo release doesn't appear after 10-15 minutes, check the GitHub-Zenodo integration settings or contact a repository maintainer.
 
-### 4. Pull Release Tag to Local Repository
+### 4. Pull release tag to local repository
 
 Now that the release is created on GitHub, pull the tag to your local repository.
 
-#### 4.1 Update Local Repository from Upstream
+#### 4.1 Update local repository from upstream
 
 **All Platforms:**
 
@@ -242,7 +238,7 @@ git tag -l 0.1.0
 git push origin main
 ```
 
-#### 4.2 Update pyproject.toml Version
+#### 4.2 Update pyproject.toml version
 
 Before building, update the version in `pyproject.toml`:
 
@@ -261,7 +257,7 @@ git commit -m "Bump version to 0.1.0"
 git push upstream main
 ```
 
-#### 4.3 Verify Version
+#### 4.3 Verify version
 
 **All Platforms:**
 
@@ -272,127 +268,9 @@ python -c "import hedvis; print(hedvis.__version__)"
 
 Expected output: `0.1.0`
 
-### 5. Build Distribution Packages
+### 5. Build distribution packages
 
-- Release date
-- Bullet points describing:
-  - New features
-  - Enhancements
-  - Bug fixes
-  - Documentation improvements
-  - Breaking changes (if any)
-
-**Example:**
-
-```markdown
-Release 0.7.1 October 13, 2025
-- Applied Black code formatter to entire codebase for consistent code style
-- Added Black to development dependencies and CI workflow
-- Enhanced CONTRIBUTING.md with code formatting guidelines
-- Updated README.md with Black usage instructions
-```
-
-#### 1.3 Run Code Quality Checks
-
-Before releasing, ensure all code quality checks pass:
-
-**All Platforms:**
-
-```bash
-# Run code formatter check
-black --check .
-# On Windows, use: black --workers 1 --check .
-
-# Run linter
-ruff check hed/ tests/
-
-# Run spell checker
-typos
-
-# Run all tests
-python -m unittest discover tests -v
-```
-
-Fix any issues before proceeding.
-
-#### 1.4 Commit CHANGELOG Updates
-
-**All Platforms:**
-
-```bash
-git add CHANGELOG.md
-git commit -m "Update CHANGELOG for version 0.7.1"
-```
-
-#### 1.5 Merge to Main Branch
-
-If you're working on a feature branch:
-
-**All Platforms:**
-
-```bash
-# Update your local main branch
-git checkout main
-git pull origin main
-
-# Merge your feature branch
-git merge your-feature-branch
-
-# Resolve any conflicts if they arise
-# Then push to origin
-git push origin main
-```
-
-### 2. Version Tagging
-
-The project uses [versioneer](https://github.com/python-versioneer/python-versioneer) for version management, which automatically derives the version from git tags.
-
-#### 2.1 Create Annotated Tag
-
-**All Platforms:**
-
-```bash
-# Create an annotated tag with the version number
-git tag -a 0.7.0 -m "Release version 0.7.0"
-```
-
-**Important:**
-
-- Use semantic versioning: MAJOR.MINOR.PATCH
-- Do NOT use a prefix (e.g., use `0.7.0`, not `v0.7.0`)
-- The tag name must match the version you want to release
-
-#### 2.2 Push the Tag
-
-**All Platforms:**
-
-```bash
-# Push the tag to the remote repository
-git push origin 0.7.0
-```
-
-#### 2.3 Verify Version
-
-**All Platforms:**
-
-```bash
-# Check that the version is correctly detected
-python -c "import hed; print(hed.__version__)"
-```
-
-Expected output: `0.7.0`
-
-If you see something like `0+untagged.xxx.gxxxxxxx`, the tag wasn't properly created or you need to pull the tags:
-
-**All Platforms:**
-
-```bash
-git fetch --tags
-```
-
-### 3. Build Distribution Packages
-
-#### 3.1 Clean Previous Builds
+#### 5.1 Clean previous builds
 
 **Windows (PowerShell):**
 
@@ -408,7 +286,7 @@ Remove-Item -Recurse -Force dist, build, *.egg-info -ErrorAction SilentlyContinu
 rm -rf dist build *.egg-info
 ```
 
-#### 3.2 Install/Upgrade Build Tools
+#### 5.2 Install/upgrade build tools
 
 **All Platforms:**
 
@@ -416,7 +294,7 @@ rm -rf dist build *.egg-info
 python -m pip install --upgrade build twine
 ```
 
-#### 3.3 Build the Packages
+#### 5.3 Build the packages
 
 **All Platforms:**
 
@@ -430,7 +308,7 @@ This creates:
 - `dist/hedvis-0.1.0-py3-none-any.whl` (wheel distribution)
 - `dist/hedvis-0.1.0.tar.gz` (source distribution)
 
-#### 3.4 Verify Build Contents
+#### 5.4 Verify build contents
 
 **Windows (PowerShell):**
 
@@ -452,9 +330,9 @@ unzip -l dist/hedvis-0.1.0-py3-none-any.whl
 tar -tzf dist/hedvis-0.1.0.tar.gz
 ```
 
-### 4. Test the Distribution (Recommended)
+### 6. Test the distribution (recommended)
 
-#### 4.1 Create Test Environment
+#### 6.1 Create test environment
 
 **Windows (PowerShell):**
 
@@ -472,7 +350,7 @@ python -m venv test_env
 source test_env/bin/activate
 ```
 
-#### 4.2 Install from Wheel
+#### 6.2 Install from wheel
 
 **All Platforms:**
 
@@ -481,7 +359,7 @@ source test_env/bin/activate
 pip install dist/hedvis-0.1.0-py3-none-any.whl
 ```
 
-#### 4.3 Run Tests
+#### 6.3 Run tests
 
 **Windows (PowerShell):**
 
@@ -503,7 +381,7 @@ cd ~/path/to/hed-vis
 python -m unittest discover tests -v
 ```
 
-#### 4.4 Verify Installation
+#### 6.4 Verify installation
 
 **All Platforms:**
 
@@ -515,7 +393,7 @@ python -c "import hedvis; print(hedvis.__version__)"
 python -c "from hedvis import create_wordcloud; print('Success!')"
 ```
 
-#### 4.5 Clean Up Test Environment
+#### 6.5 Clean up test environment
 
 **Windows (PowerShell):**
 
@@ -531,9 +409,9 @@ deactivate
 rm -rf test_env
 ```
 
-### 5. Upload to PyPI
+### 7. Upload to PyPI
 
-#### 5.1 Check Distribution with Twine
+#### 7.1 Check distribution with Twine
 
 **All Platforms:**
 
@@ -544,7 +422,7 @@ python -m twine check dist/*
 
 Expected output: `Checking dist/hedvis-0.1.0.tar.gz: PASSED` (and same for .whl)
 
-#### 5.2 Upload to Test PyPI (Optional but Recommended)
+#### 7.2 Upload to Test PyPI (optional but recommended)
 
 **All Platforms:**
 
@@ -561,7 +439,7 @@ You'll be prompted for your TestPyPI credentials.
 pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ hedvis==0.1.0
 ```
 
-#### 5.3 Upload to Production PyPI
+#### 7.3 Upload to production PyPI
 
 **All Platforms:**
 
@@ -596,7 +474,7 @@ export TWINE_PASSWORD="pypi-your-api-token-here"
 python -m twine upload dist/*
 ```
 
-#### 5.4 Verify on PyPI
+#### 7.4 Verify on PyPI
 
 Visit https://pypi.org/project/hedvis/ and verify:
 
@@ -605,13 +483,13 @@ Visit https://pypi.org/project/hedvis/ and verify:
 - [ ] All metadata is correct
 - [ ] Download links work
 
-### 6. Create GitHub Release
+### 8. Create GitHub release
 
-#### 6.1 Navigate to Releases
+#### 8.1 Navigate to releases
 
 Go to: https://github.com/hed-standard/hed-vis/releases/new
 
-#### 6.2 Create Release
+#### 8.2 Create release
 
 Fill in the release form:
 
@@ -642,18 +520,18 @@ Fill in the release form:
 See [CHANGELOG.md](https://github.com/hed-standard/hed-vis/blob/main/CHANGELOG.md)
 ```
 
-#### 6.3 Attach Build Artifacts
+#### 8.3 Attach build artifacts
 
 - Upload `dist/hedvis-0.1.0-py3-none-any.whl`
 - Upload `dist/hedvis-0.1.0.tar.gz`
 
-#### 6.4 Publish Release
+#### 8.4 Publish release
 
 Click **Publish release**
 
-### 7. Post-Release Verification
+### 9. Post-release verification
 
-#### 7.1 Test Installation from PyPI
+#### 9.1 Test installation from PyPI
 
 In a fresh environment:
 
@@ -666,13 +544,13 @@ python -c "import hedvis; print(hedvis.__version__)"
 
 Expected output: `0.1.0`
 
-#### 7.2 Verify Documentation
+#### 9.2 Verify documentation
 
 Check that documentation sites are updated (may take some time):
 
 - https://www.hedtags.org/hed-vis/ (if applicable)
 
-#### 7.3 Announce the Release
+#### 9.3 Announce the release
 
 Consider announcing the release:
 
@@ -681,7 +559,7 @@ Consider announcing the release:
 - [ ] Community forums
 - [ ] Social media (if applicable)
 
-### 8. Troubleshooting
+### 10. Troubleshooting
 
 #### Issue: Wrong version number after tagging
 
@@ -744,7 +622,7 @@ git push origin 0.1.0
 
 **WARNING:** Only delete remote tags if the release hasn't been published yet!
 
-## Version Numbering Guidelines
+## Version numbering guidelines
 
 HED-Python follows [Semantic Versioning](https://semver.org/):
 
@@ -758,7 +636,7 @@ HED-Python follows [Semantic Versioning](https://semver.org/):
 - **MINOR:** New features, new functions/classes, enhancements (e.g., 0.1.0 → 0.2.0)
 - **PATCH:** Bug fixes, documentation fixes, small improvements (e.g., 0.1.0 → 0.1.1)
 
-## Quick Reference Commands
+## Quick reference commands
 
 **Windows (PowerShell):**
 
@@ -792,7 +670,7 @@ python -m twine check dist/*                  # Verify
 python -m twine upload dist/*                 # Upload
 ```
 
-## Additional Resources
+## Additional resources
 
 - [Python Packaging Guide](https://packaging.python.org/)
 - [PyPI Help](https://pypi.org/help/)
