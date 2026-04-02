@@ -127,8 +127,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - Comprehensive dependency management
   - Entry point for command-line script
   - Development dependencies specification
-  - Black code formatter configuration
-  - Ruff linter configuration
+  - Ruff linter and formatter configuration
 
 - **Continuous integration**:
 
@@ -136,8 +135,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
   - Python version matrix testing (3.10, 3.11, 3.12, 3.13, 3.14)
   - Code coverage reporting with codecov
   - Automated code quality checks:
-    - Black code formatter validation
-    - Ruff linting
+    - Ruff linting and formatting
     - Typos for spelling errors
     - Link checker for documentation
     - Markdown formatting validation
@@ -147,8 +145,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - **Code quality tools**:
 
-  - Black formatter configuration
-  - Ruff linter with custom rules
+  - Ruff linter and formatter with custom rules
   - Typos with custom dictionary
   - Pre-commit hook support
   - Coverage configuration with exclusions
