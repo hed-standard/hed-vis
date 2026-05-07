@@ -1,0 +1,49 @@
+digraph BehavioralTask {
+    rankdir=LR;
+    splines=curved; // Forces smooth curves instead of jagged "ortho" lines
+    nodesep=0.6; // Increases vertical space between nodes
+    ranksep=0.8; // Adjusts horizontal distance between columns
+    fontname="Arial",
+    
+// Forces all nodes to a uniform oval size
+    node [shape=oval, fixedsize=true, width=1.2, height=0.5, fontsize=11];
+    
+    // Align green and black vertically
+    { rank=same; Green; Black; }
+    
+    // Align feedback nodes vertically
+    { rank=same; In; Out; }
+    
+    // Align output nodes vertically
+    { rank=same; Beep; Buzz; }
+
+   
+    // Transitions
+    Fix -> Green;
+    Fix -> Black;
+
+    // Self-loops
+    Green -> Green;
+    Black -> Black [dir=forward];
+    
+    // Swaps
+    Green -> Black [dir=both]; // Simplified two-way arrow
+
+    // Sequence
+    Green -> WM;
+    Black -> WM;
+    WM -> Probe;
+
+    Probe -> In;
+    Probe -> Out;
+
+    In -> Beep;
+    In -> Buzz;
+    Out -> Beep;
+    Out -> Buzz;
+
+    Beep -> Button;
+    Buzz -> Button;
+
+    // Return loop - uses 'tailport' and 'headport' to wrap around the top
+    Button:n -> Fix:s [constraint=false, label="Trial"];
